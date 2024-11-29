@@ -1,3 +1,13 @@
+<script>
+    function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+  </script>
 <main class="main-content  mt-0">
     <section>
       <div class="page-header min-vh-100">
