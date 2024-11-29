@@ -30,12 +30,12 @@
     <div class="container-fluid py-4">
       <?php
         $hal = @$_GET['hal'];
-        $beranda = "pages/user/index.php";
+        $beranda = "pages/admin/dashboard.php";
         $p = "pages/admin/$hal.php";
         if(!empty($hal) && file_exists($p)){
-            include "$p";
+          include "$p";
         }else{
-            include "$beranda";
+          include "$beranda";
         }
       ?>
       <?php include 'footer.php'?>
