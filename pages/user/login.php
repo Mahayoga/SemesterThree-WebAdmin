@@ -1,13 +1,35 @@
 <script>
-    function myFunction() {
-  var x = document.getElementById("password");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
+  function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
   }
-}
-  </script>
+</script>
+<?php
+  if(isset($_POST['btn-login'])) {
+    $email = $_POST['email'];
+    $pass =  $_POST['password'];
+
+    $sql = 'SELECT * FROM users WHERE email = "' . $email . '"';
+    $result = $koneksi->query($sql);
+
+    if($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+        if(password_verify($pass, $row['password'])) {
+          $_SESSION['isLogin'] = true;
+          header('Location: ?hal=dashboard');
+          exit();
+        }
+      }
+      echo "<script>alert('Email atau Password salah!')</script>";
+    } else {
+      echo "<script>alert('Akun dengan email $email, tidak terdaftar dalam database kami!')</script>";
+    }
+  }
+?>
 <main class="main-content  mt-0">
     <section>
       <div class="page-header min-vh-100">
@@ -20,19 +42,19 @@
                   <p class="mb-0">Masukkan Email dan Password</p>
                 </div>
                 <div class="card-body">
-                  <form role="form">
+                  <form role="form" method="post">
                     <div class="mb-3">
-                      <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email">
+                      <input type="email" name="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email">
                     </div>
                     <div class="mb-3">
-                      <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" id="password">
+                      <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" id="password">
                     </div>
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" onclick="myFunction()">
                       <label class="form-check-label" for="Show">Tampilkan Password</label>
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn btn-lg bg-gradient-info btn-lg w-100 mt-4 mb-0">Masuk</button>
+                      <button type="submit" name="btn-login" class="btn btn-lg bg-gradient-info btn-lg w-100 mt-4 mb-0">Masuk</button>
                     </div>
                   </form>
                 </div>
