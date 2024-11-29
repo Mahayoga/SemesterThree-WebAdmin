@@ -1,8 +1,8 @@
 <?php 
-  // session_start();
-  // if($_SESSION['isLogin']) {
-    include 'pages/layout/app.php';
-  // } else {
-  //   include 'pages/user/index.php';
-  // }
+  session_start();
+  if($_SESSION['isLogin']) {
+    include 'pages/layout/admin/app.php';
+  } else {
+    include 'pages/layout/user/app.php';
+  }
 ?>
