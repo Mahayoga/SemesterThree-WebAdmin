@@ -26,6 +26,40 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link <?php if(@$_GET['hal'] == 'dataproduk') {echo 'active';}?>" href="?hal=dataproduk">
+          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+          </div>
+          <span class="nav-link-text ms-1">Tabel Produk</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <?php if(@$_GET['hal'] == 'datakaryawan') {echo 'active';}?>" href="?hal=datakaryawan">
+          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+          </div>
+          <span class="nav-link-text ms-1">Tabel Karyawan</span>
+        </a>
+      </li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <?php if(@$_GET['hal'] == 'datauser') {echo 'active';}?>" href="?hal=datauser">
+          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+          </div>
+          <span class="nav-link-text ms-1">Tabel user</span>
+        </a>
+      </li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <?php if(@$_GET['hal'] == 'datatransaksi') {echo 'active';}?>" href="?hal=datatransaksi">
+          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+          </div>
+          <span class="nav-link-text ms-1">Tabel Transaksi</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link <?php if(@$_GET['hal'] == 'billing') {echo 'active';}?>" href="?hal=billing">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
