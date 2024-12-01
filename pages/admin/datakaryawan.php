@@ -44,11 +44,11 @@
                 </td>
                 <td class="align-middle">
                   <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                  <td>
+                
                   <button type="button" class="btn btn-primary btn-sm">Edit</button>
                   <button type="button" class="btn btn-danger btn-sm">Hapus</button>
                   <button type="button" class="btn btn-dark btn-sm">Detail</button>
-                </td>
+                
                   </a>
                 </td>
               </tr>
@@ -76,11 +76,11 @@
                 </td>
                 <td class="align-middle">
                   <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                  <td>
+                
                   <button type="button" class="btn btn-primary btn-sm">Edit</button>
                   <button type="button" class="btn btn-danger btn-sm">Hapus</button>
                   <button type="button" class="btn btn-dark btn-sm">Detail</button>
-                </td>
+                
                   </a>
                 </td>
               </tr>
@@ -108,11 +108,11 @@
                 </td>
                 <td class="align-middle">
                   <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                  <td>
+                
                   <button type="button" class="btn btn-primary btn-sm">Edit</button>
                   <button type="button" class="btn btn-danger btn-sm">Hapus</button>
                   <button type="button" class="btn btn-dark btn-sm">Detail</button>
-                </td>
+                
                   </a>
                 </td>
               </tr>
@@ -140,11 +140,11 @@
                 </td>
                 <td class="align-middle">
                   <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                  <td>
+                  
                   <button type="button" class="btn btn-primary btn-sm">Edit</button>
                   <button type="button" class="btn btn-danger btn-sm">Hapus</button>
                   <button type="button" class="btn btn-dark btn-sm">Detail</button>
-                </td>
+                
                   </a>
                 </td>
               </tr>
@@ -172,11 +172,11 @@
                 </td>
                 <td class="align-middle">
                   <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                  <td>
+                  
                   <button type="button" class="btn btn-primary btn-sm">Edit</button>
                   <button type="button" class="btn btn-danger btn-sm">Hapus</button>
                   <button type="button" class="btn btn-dark btn-sm">Detail</button>
-                </td>
+                
                   </a>
                 </td>
               </tr>
@@ -201,17 +201,19 @@
                 </td>
                 <td class="align-middle text-center">
                   <span class="text-secondary text-xs font-weight-bold">Jember</span>
+               
                 </td>
                 <td class="align-middle">
                   <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                  <td>
+                  
                   <button type="button" class="btn btn-primary btn-sm">Edit</button>
                   <button type="button" class="btn btn-danger btn-sm">Hapus</button>
                   <button type="button" class="btn btn-dark btn-sm">Detail</button>
-                </td>
+                
                   </a>
                 </td>
-              </tr>
+                </tr>
+              
             </tbody>
           </table>
         </div>
