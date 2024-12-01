@@ -59,7 +59,8 @@
     // Create Table Users
     $sql = "CREATE TABLE IF NOT EXISTS users (
         id_user INT(11) AUTO_INCREMENT PRIMARY KEY,
-        nama_user VARCHAR(255) NOT NULL,
+        nama VARCHAR(255) NOT NULL,
+        no_telp CHAR(12) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         role ENUM('admin', 'user') NOT NULL
@@ -71,14 +72,14 @@
     }
 
     // Create Seeder users
-    $sql = "INSERT INTO users (nama_user, email, password, role) VALUES 
-        ('Mahayoga', 'myoga.bahtiar@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-        ('Irsyad', 'syadd@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-        ('Nisa', 'nisa@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-        ('Citra', 'citra@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-        ('Fila', 'fila@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+    $sql = "INSERT INTO users (nama, no_telp, email, password, role) VALUES 
+        ('Mahayoga', '0812345671', 'myoga.bahtiar@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+        ('Irsyad','0812345672', 'syadd@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+        ('Nisa','0812345673', 'nisa@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+        ('Citra','0812345674', 'citra@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+        ('Fila','0812345675', 'fila@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
 
-        ('User Test', 'user@gmail.com', '" . password_hash('user1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'user')
+        ('User Test','0812345678', 'user@gmail.com', '" . password_hash('user1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'user')
     ";
     if($koneksi->query($sql) === true) {
         echo "Seeder users dibuat!: users \n";
