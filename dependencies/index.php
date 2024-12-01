@@ -1,7 +1,20 @@
 <?php
-    $localhostName = readline('Masukkan localhost (database): ');
-    $databaseUsername = readline('Masukkan username phpMyAdmin: ');
-    $databasePassword = readline('Masukkan password phpMyAdmin (kosongkan jika tidak ada): ');
+    $localhostName = '';
+    $databaseUsername = '';
+    $databasePassword = '';
+
+    if(!function_exists("readline")) {
+        echo "Masukkan localhost (database): ";
+        $localhostName = fgets(STDIN);
+        echo "Masukkan username phpMyAdmin: ";
+        $databaseUsername = fgets(STDIN);
+        echo "Masukkan password phpMyAdmin (kosongkan jika tidak ada): ";
+        $databasePassword = fgets(STDIN);
+    } else {
+        $localhostName = readline('Masukkan localhost (database): ');
+        $databaseUsername = readline('Masukkan username phpMyAdmin: ');
+        $databasePassword = readline('Masukkan password phpMyAdmin (kosongkan jika tidak ada): ');
+    }
 
     echo "Okee file config akan dibuat dengan nama database 'barbershop'.....\n";
 
