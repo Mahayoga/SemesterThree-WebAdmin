@@ -1,5 +1,8 @@
 # Daftar Isi
+ - [Hehe](#hal-pertama-yang-harus-diperhatikan)
  - [Tutorial Pasang Halaman Web](#cara-pasang-halaman-kalian-ke-web-tutor_pasang_halaman_web)
+
+# Hal Pertama yang harus diperhatikan
 
 # Cara pasang halaman kalian ke web <a id="cara-pasang-halaman-kalian-ke-web-tutor_pasang_halaman_web"></a>
 
