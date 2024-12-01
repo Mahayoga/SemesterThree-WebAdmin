@@ -5,11 +5,11 @@
 
     if(!function_exists("readline")) {
         echo "Masukkan localhost (database): ";
-        $localhostName = fgets(STDIN);
+        $localhostName = trim(fgets(STDIN));
         echo "Masukkan username phpMyAdmin: ";
-        $databaseUsername = fgets(STDIN);
+        $databaseUsername = trim(fgets(STDIN));
         echo "Masukkan password phpMyAdmin (kosongkan jika tidak ada): ";
-        $databasePassword = fgets(STDIN);
+        $databasePassword = trim(fgets(STDIN));
     } else {
         $localhostName = readline('Masukkan localhost (database): ');
         $databaseUsername = readline('Masukkan username phpMyAdmin: ');
