@@ -11,11 +11,12 @@
 <?php
 if(isset($_POST['btn-register'])){
   $nama = $_POST['Nama'];
+  $no_telp = $_POST['no_telp'];
   $email = $_POST['Email'];
   $pass = $_POST['Password'];
 
-  $stmt = $koneksi->prepare("INSERT INTO users (nama, email, password, role) VALUES (?, ?, ?, 'user')");
-  $stmt->bind_param("sss", $nama, $email, password_hash($pass, PASSWORD_BCRYPT, ["cost" => 12]));
+  $stmt = $koneksi->prepare("INSERT INTO users (nama, no_telp, email, password, role) VALUES (?, ?, ?, ?, 'user')");
+  $stmt->bind_param("ssss", $nama, $no_telp, $email, password_hash($pass, PASSWORD_BCRYPT, ["cost" => 12]));
   $stmt->execute();
 
   // $_SESSION['btn-register'] = true;
@@ -56,6 +57,9 @@ if(isset($_POST['btn-register'])){
               <form role="form" method="post">
                 <div class="mb-3">
                   <input type="text" name="Nama" class="form-control" placeholder="Nama" aria-label="Nama">
+                </div>
+                <div class="mb-3">
+                  <input type="tel" name="no_telp" class="form-control" placeholder="Nomor Telepon" aria-label="no_telp" pattern="[0-9]">
                 </div>
                 <div class="mb-3">
                   <input type="email" name="Email" class="form-control" placeholder="Email" aria-label="Email">
