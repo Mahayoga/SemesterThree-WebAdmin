@@ -7,7 +7,25 @@
     x.type = "password";
   }
 }
-  </script>
+</script>
+<?php
+if(isset($_POST['btn-register'])){
+  $nama = $_POST['Nama'];
+  $no_telp = $_POST['no_telp'];
+  $email = $_POST['Email'];
+  $pass = $_POST['Password'];
+
+  $stmt = $koneksi->prepare("INSERT INTO users (nama, no_telp, email, password, role) VALUES (?, ?, ?, ?, 'user')");
+  $stmt->bind_param("ssss", $nama, $no_telp, $email, password_hash($pass, PASSWORD_BCRYPT, ["cost" => 12]));
+  $stmt->execute();
+
+  // $_SESSION['btn-register'] = true;
+
+  echo "<script>alert('Selesai')</script>";
+  header('Location: ?hal=login');
+  exit();
+}
+?>
 <main class="main-content  mt-0">
     <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signup-cover.jpg'); background-position: top;">
       <span class="mask bg-gradient-dark opacity-6"></span>
@@ -36,15 +54,18 @@
               </div>
             </div>
             <div class="card-body">
-              <form role="form">
+              <form role="form" method="post">
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="Name" aria-label="Name">
+                  <input type="text" name="Nama" class="form-control" placeholder="Nama" aria-label="Nama">
                 </div>
                 <div class="mb-3">
-                  <input type="email" class="form-control" placeholder="Email" aria-label="Email">
+                  <input type="tel" name="no_telp" class="form-control" placeholder="Nomor Telepon" aria-label="no_telp" pattern="[0-9]">
                 </div>
                 <div class="mb-3">
-                  <input type="password" class="form-control" placeholder="Password" aria-label="Password" id="password">
+                  <input type="email" name="Email" class="form-control" placeholder="Email" aria-label="Email">
+                </div>
+                <div class="mb-3">
+                  <input type="password" name="Password" class="form-control" placeholder="Password" aria-label="Password" id="password">
                 </div>
                 <div class="form-check form-switch mb-3">
                   <input class="form-check-input" type="checkbox" onclick="myFunction()">
@@ -57,7 +78,7 @@
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn bg-gradient-info w-100 my-4 mb-2">Daftar</button>
+                  <button type="submit" name="btn-register" class="btn bg-gradient-info w-100 my-4 mb-2">Daftar</button>
                 </div>
                 <p class="text-sm mt-3 mb-0">Sudah memiliki Akun? <a href="?hal=login" class="text-dark font-weight-bolder">Masuk</a></p>
               </form>
