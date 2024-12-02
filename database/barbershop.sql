@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1deb5ubuntu1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 01, 2024 at 01:36 PM
--- Server version: 10.6.18-MariaDB-0ubuntu0.22.04.1
--- PHP Version: 8.3.14
+-- Host: localhost
+-- Generation Time: Dec 01, 2024 at 06:00 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
+  `nama` varchar(225) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` enum('admin','user') NOT NULL
@@ -38,8 +39,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `email`, `password`, `role`) VALUES
-(1, 'myoga.bahtiar@gmail.com', '$2y$12$RWbQj3i8f0VqhZvqdPo0wOU31rYJiIU.RAGu2mo7SuoPT6/DYh4JC', 'admin');
+INSERT INTO `users` (`id_user`, `nama`, `email`, `password`, `role`) VALUES
+(1, 'Mahayoga', 'myoga.bahtiar@gmail.com', '$2y$12$RWbQj3i8f0VqhZvqdPo0wOU31rYJiIU.RAGu2mo7SuoPT6/DYh4JC', 'admin'),
+(2, 'Irsyad', 'ibadmuhammadirsyadul@gmail.com', '$2a$12$.HzxTD2UN9JhoKHQgEN6O.qags.eOIm.QX9TEimHDVTVNyEwZoPcq', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -59,7 +61,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
