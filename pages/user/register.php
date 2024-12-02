@@ -1,10 +1,19 @@
 <script>
-    function myFunction() {
-  var x = document.getElementById("password");
+    function myFunction2(){
+  var x = document.getElementById("pewe");
   if (x.type === "password") {
     x.type = "text";
   } else {
     x.type = "password";
+  }
+    }
+
+    function myFunction() {
+  var y = document.getElementById("password");
+  if (y.type === "password") {
+    y.type = "text";
+  } else {
+    y.type = "password";
   }
 }
 </script>
@@ -12,11 +21,13 @@
 if(isset($_POST['btn-register'])){
   $nama = $_POST['Nama'];
   $no_telp = $_POST['no_telp'];
+  $alamat = $_POST['Alamat'];
   $email = $_POST['Email'];
+  $pewe = $_POST['pewe'];
   $pass = $_POST['Password'];
 
-  $stmt = $koneksi->prepare("INSERT INTO users (nama, no_telp, email, password, role) VALUES (?, ?, ?, ?, 'user')");
-  $stmt->bind_param("ssss", $nama, $no_telp, $email, password_hash($pass, PASSWORD_BCRYPT, ["cost" => 12]));
+  $stmt = $koneksi->prepare("INSERT INTO users (nama, no_telp, alamat, email, password, role) VALUES (?, ?, ?, ?, ?, 'user')");
+  $stmt->bind_param("sssss", $nama, $no_telp, $alamat, $email, password_hash($pass, PASSWORD_BCRYPT, ["cost" => 12]));
   $stmt->execute();
 
   // $_SESSION['btn-register'] = true;
@@ -62,10 +73,20 @@ if(isset($_POST['btn-register'])){
                   <input type="tel" name="no_telp" class="form-control" placeholder="Nomor Telepon" aria-label="no_telp" pattern="[0-9]">
                 </div>
                 <div class="mb-3">
+                  <input type="text" name="Alamat" class="form-control" placeholder="Alamat" aria-label="Alamat">
+                </div>
+                <div class="mb-3">
                   <input type="email" name="Email" class="form-control" placeholder="Email" aria-label="Email">
                 </div>
                 <div class="mb-3">
-                  <input type="password" name="Password" class="form-control" placeholder="Password" aria-label="Password" id="password">
+                  <input type="password" name="pewe" class="form-control" placeholder="Masukkan Password" aria-label="pewe" id="pewe">
+                </div>
+                <div class="form-check form-switch mb-3">
+                  <input class="form-check-input" type="checkbox" onclick="myFunction2()">
+                  <label class="form-check-label" for="Show">Tampilkan Password</label>
+                </div>
+                <div class="mb-3">
+                  <input type="password" name="Password" class="form-control" placeholder="Konfirmasi Password" aria-label="Password" id="password">
                 </div>
                 <div class="form-check form-switch mb-3">
                   <input class="form-check-input" type="checkbox" onclick="myFunction()">
