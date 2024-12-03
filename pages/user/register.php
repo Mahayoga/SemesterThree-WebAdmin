@@ -1,6 +1,6 @@
 <script>
     function myFunction2(){
-  var x = document.getElementById("pewe");
+  var x = document.getElementById ("pewe");
   if (x.type === "password") {
     x.type = "text";
   } else {
