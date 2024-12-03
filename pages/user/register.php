@@ -20,7 +20,7 @@
 <?php
 if(isset($_POST['btn-register'])){
   $nama = $_POST['Nama'];
-  $no_telp = $_POST['no_telp'];
+  $no_telp = trim($_POST['no_telp']);
   $alamat = $_POST['Alamat'];
   $email = $_POST['Email'];
   $pewe = $_POST['pewe'];
@@ -70,7 +70,7 @@ if(isset($_POST['btn-register'])){
                   <input type="text" name="Nama" class="form-control" placeholder="Nama" aria-label="Nama">
                 </div>
                 <div class="mb-3">
-                  <input type="tel" name="no_telp" class="form-control" placeholder="Nomor Telepon" aria-label="no_telp" pattern="[0-9]">
+                  <input type="tel" name="no_telp" class="form-control" placeholder="Nomor Telepon" aria-label="no_telp" pattern="[0-9]{12}">
                 </div>
                 <div class="mb-3">
                   <input type="text" name="Alamat" class="form-control" placeholder="Alamat" aria-label="Alamat">
