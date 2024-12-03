@@ -70,7 +70,7 @@
             <input type="text" class="form-control" id="bayar" name="bayar" onchange="calculateChange()">
         </div>
         <div class="form-group">
-            <label for="kembali" class="form-label">Kembali</label>
+            <label for="kembali" class="form-label">Kembalian</label>
             <input type="text" class="form-control" id="kembali" name="kembali">
         </div>
 </div>
