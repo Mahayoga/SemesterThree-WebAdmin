@@ -88,7 +88,7 @@
     }
 
     // Create Table Users
-    $sql = "CREATE TABLE IF NOT EXISTS Produk (
+    $sql = "CREATE TABLE IF NOT EXISTS produk (
         id_produk INT(11) AUTO_INCREMENT PRIMARY KEY,
         nama_produk VARCHAR(255) NOT NULL,
         harga_beli CHAR(12) NOT NULL,
@@ -97,7 +97,7 @@
         stok INT NOT NULL
     )";
     if($koneksi->query($sql) === true) {
-        echo "Tabel dibuat!: users \n";
+        echo "Tabel dibuat!: produk \n";
     } else {
         echo "Error: saat membuat tabel \n";
     }
@@ -112,25 +112,25 @@
         ('Hairmask','55000','65000','Membantu melembutkan','30')
     ";
     if($koneksi->query($sql) === true) {
-        echo "Seeder users dibuat!: users \n";
+        echo "Seeder produk dibuat! \n";
     } else {
-        echo "Error: saat memasukkan seeder users \n";
+        echo "Error: saat memasukkan seeder produk \n";
     }
 
-    // Create Table Users
-    $sql = "CREATE TABLE IF NOT EXISTS Karyawan (
+    // Create Table karyawan
+    $sql = "CREATE TABLE IF NOT EXISTS karyawan (
         id_karyawan INT(11) AUTO_INCREMENT PRIMARY KEY,
         nama_karyawan VARCHAR(255) NOT NULL,
         no_telepon CHAR(15) NOT NULL,
         alamat CHAR(12) NOT NULL
        )";
     if($koneksi->query($sql) === true) {
-        echo "Tabel dibuat!: users \n";
+        echo "Tabel dibuat!: karyawan \n";
     } else {
         echo "Error: saat membuat tabel \n";
     }  
 
-     // Create Seeder users
+     // Create Seeder karyawan
      $sql = "INSERT INTO karyawan (nama_karyawan, no_telepon, alamat) VALUES 
      ('Mahayoga','085372638944','Probolinggo'),
      ('Nisa','0813838452985','Banyuwangi'),
@@ -140,7 +140,7 @@
      ('Samsul','08327547252','Jember')
      ";
 if($koneksi->query($sql) === true) {
-    echo "Tabel dibuat!: users \n";
+    echo "Seeder produk dibuat! \n";
 } else {
     echo "Error: saat membuat tabel \n";
 }  
