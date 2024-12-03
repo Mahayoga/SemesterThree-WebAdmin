@@ -98,7 +98,7 @@
                 <td>
                   <p class="text-xs font-weight-bold mb-0">Citra</p>
        
-                </td>
+                </td> 
                 <td class="align-middle text-center text-sm">
                   <span class="badge badge-sm bg-gradient-success">0835473675</span>
                 </td>

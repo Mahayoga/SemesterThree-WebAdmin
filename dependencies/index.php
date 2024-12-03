@@ -79,12 +79,70 @@ $sql = "INSERT INTO users (nama, no_telp, email, password, role) VALUES
     ('Citra','0812345674', 'citra@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
     ('Fila','0812345675', 'fila@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
     ('User Test','0812345678', 'user@gmail.com', '" . password_hash('user1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'user')
-";
-if ($koneksi->query($sql) === true) {
-    echo "Seeder users dibuat!: users \n";
+    ";
+    if($koneksi->query($sql) === true) {
+        echo "Seeder users dibuat!: users \n";
+    } else {
+        echo "Error: saat memasukkan seeder users \n";
+    }
+
+    // Create Table Users
+    $sql = "CREATE TABLE IF NOT EXISTS produk (
+        id_produk INT(11) AUTO_INCREMENT PRIMARY KEY,
+        nama_produk VARCHAR(255) NOT NULL,
+        harga_beli CHAR(12) NOT NULL,
+        harga_jual CHAR(12) NOT NULL,
+        deskripsi_produk VARCHAR(255) NOT NULL,
+        stok INT NOT NULL
+    )";
+    if($koneksi->query($sql) === true) {
+        echo "Tabel dibuat!: produk \n";
+    } else {
+        echo "Error: saat membuat tabel \n";
+    }
+
+    // Create Seeder users
+    $sql = "INSERT INTO produk (nama_produk, harga_beli, harga_jual, deskripsi_produk, stok) VALUES 
+        ('Shampo','33000','40000','Shampo anti ketombe','45'),
+        ('Pomade','45000','55000','Pomade varians','55'),
+        ('Powder','47000','55000','Powder pelembut','30'),
+        ('Conditioner','30000','40000','Conditioner pelembut','40'),
+        ('Vitamin','70000','80000','Menutrisi dan merawat','47'),
+        ('Hairmask','55000','65000','Membantu melembutkan','30')
+    ";
+    if($koneksi->query($sql) === true) {
+        echo "Seeder produk dibuat! \n";
+    } else {
+        echo "Error: saat memasukkan seeder produk \n";
+    }
+
+    // Create Table karyawan
+    $sql = "CREATE TABLE IF NOT EXISTS karyawan (
+        id_karyawan INT(11) AUTO_INCREMENT PRIMARY KEY,
+        nama_karyawan VARCHAR(255) NOT NULL,
+        no_telepon CHAR(15) NOT NULL,
+        alamat CHAR(12) NOT NULL
+       )";
+    if($koneksi->query($sql) === true) {
+        echo "Tabel dibuat!: karyawan \n";
+    } else {
+        echo "Error: saat membuat tabel \n";
+    }  
+
+     // Create Seeder karyawan
+     $sql = "INSERT INTO karyawan (nama_karyawan, no_telepon, alamat) VALUES 
+     ('Mahayoga','085372638944','Probolinggo'),
+     ('Nisa','0813838452985','Banyuwangi'),
+     ('Citra','08324674634','Jember'),
+     ('Filla','0812445446','Probolinggo'),
+     ('Irsyad','08251575715','Gresik'),
+     ('Samsul','08327547252','Jember')
+     ";
+if($koneksi->query($sql) === true) {
+    echo "Seeder produk dibuat! \n";
 } else {
-    echo "Error: saat memasukkan seeder users \n";
-}
+    echo "Error: saat membuat tabel \n";
+}  
 
 // Create Table Transaksi
 $sql = "CREATE TABLE IF NOT EXISTS transaksi (
@@ -116,5 +174,4 @@ if ($koneksi->query($sql) === true) {
 } else {
     echo "Error: saat memasukkan seeder transaksi \n";
 }
-
 ?>
