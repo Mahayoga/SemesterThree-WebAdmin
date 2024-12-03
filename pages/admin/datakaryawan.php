@@ -2,13 +2,38 @@
   <div class="col-12">
     <div class="card mb-4">
       <div class="card-header pb-0">
+      <style>
+        table {
+            width: 100%;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #6c757d;
+            border-bottom: 2px solid #e9ecef;
+        }
+        td {
+            font-size: 12px;
+        }
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 10px;
+        }
+      </style>
+    <body>
+      <div class="container mt-4">
         <h6><Strong>Data Karyawan</Strong></h6>
         <div><button type="button" class="btn btn-success btn-sm"> Tambah</button>
 </div>
       </div>
-      <div class="card-body px-0 pt-0 pb-2">
-        <div class="table-responsive p-0">
-          <table class="table align-items-center mb-0">
+      <table class="table table-striped table-bordered mt-4">
             <thead>
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
@@ -98,7 +123,7 @@
                 <td>
                   <p class="text-xs font-weight-bold mb-0">Citra</p>
        
-                </td>
+                </td> 
                 <td class="align-middle text-center text-sm">
                   <span class="badge badge-sm bg-gradient-success">0835473675</span>
                 </td>
