@@ -1,190 +1,80 @@
 <div class="row">
-  <div class="col-12">
+<?php
+// Mengimpor file koneksi database
+include 'config/connection.php';
+
+// Query untuk mendapatkan data dari tabel users
+$sql = "SELECT * FROM users";
+$result = $koneksi->query($sql);
+?>
+<div class="col-12">
     <div class="card mb-4">
       <div class="card-header pb-0">
-        <h6>Authors table</h6>
-      </div>
-      <div class="card-body px-0 pt-0 pb-2">
-        <div class="table-responsive p-0">
-          <table class="table align-items-center mb-0">
+      <style>
+        table {
+            width: 100%;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #6c757d;
+            border-bottom: 2px solid #e9ecef;
+        }
+        td {
+            font-size: 12px;
+        }
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 10px;
+        }
+      </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h6><strong>Data User</strong></h6>
+        <div>
+          <button type="button" class="btn btn-success btn-sm">Tambah</button>
+        </div>
+        <table class="table table-striped table-bordered mt-4">
             <thead>
               <tr>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
-                <th class="text-secondary opacity-7"></th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID User</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Telepon</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Password</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div>
-                      <img src="assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">John Michael</h6>
-                      <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <p class="text-xs font-weight-bold mb-0">Manager</p>
-                  <p class="text-xs text-secondary mb-0">Organization</p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <span class="badge badge-sm bg-gradient-success">Online</span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                </td>
-                <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                    Edit
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div>
-                      <img src="assets/img/team-3.jpg" class="avatar avatar-sm me-3" alt="user2">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">Alexa Liras</h6>
-                      <p class="text-xs text-secondary mb-0">alexa@creative-tim.com</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <p class="text-xs font-weight-bold mb-0">Programator</p>
-                  <p class="text-xs text-secondary mb-0">Developer</p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
-                </td>
-                <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                    Edit
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div>
-                      <img src="assets/img/team-4.jpg" class="avatar avatar-sm me-3" alt="user3">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">Laurent Perrier</h6>
-                      <p class="text-xs text-secondary mb-0">laurent@creative-tim.com</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <p class="text-xs font-weight-bold mb-0">Executive</p>
-                  <p class="text-xs text-secondary mb-0">Projects</p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <span class="badge badge-sm bg-gradient-success">Online</span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
-                </td>
-                <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                    Edit
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div>
-                      <img src="assets/img/team-3.jpg" class="avatar avatar-sm me-3" alt="user4">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">Michael Levi</h6>
-                      <p class="text-xs text-secondary mb-0">michael@creative-tim.com</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <p class="text-xs font-weight-bold mb-0">Programator</p>
-                  <p class="text-xs text-secondary mb-0">Developer</p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <span class="badge badge-sm bg-gradient-success">Online</span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
-                </td>
-                <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                    Edit
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div>
-                      <img src="assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user5">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">Richard Gran</h6>
-                      <p class="text-xs text-secondary mb-0">richard@creative-tim.com</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <p class="text-xs font-weight-bold mb-0">Manager</p>
-                  <p class="text-xs text-secondary mb-0">Executive</p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
-                </td>
-                <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                    Edit
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div>
-                      <img src="assets/img/team-4.jpg" class="avatar avatar-sm me-3" alt="user6">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                      <p class="text-xs text-secondary mb-0">miriam@creative-tim.com</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <p class="text-xs font-weight-bold mb-0">Programtor</p>
-                  <p class="text-xs text-secondary mb-0">Developer</p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
-                </td>
-                <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                    Edit
-                  </a>
-                </td>
-              </tr>
+              <?php if ($result->num_rows > 0): ?>
+                <?php while($row = $result->fetch_assoc()): ?>
+                  <tr>
+                    <td><?php echo htmlspecialchars($row['id_user']); ?></td>
+                    <td><?php echo htmlspecialchars($row['nama']); ?></td>
+                    <td class="text-center"><?php echo htmlspecialchars($row['no_telp']); ?></td>
+                    <td class="text-center"><?php echo htmlspecialchars($row['email']); ?></td>
+                    <td class="text-center"><?php echo str_repeat('•', strlen($row['password'])); ?></td>
+                    <td class="text-center"><?php echo htmlspecialchars($row['role']); ?></td>
+                    <td class="align-middle">
+                      <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                      <button type="button" class="btn btn-danger btn-sm">Hapus</button>
+                    </td>
+                  </tr>
+                <?php endwhile; ?>
+              <?php else: ?>
+                <tr>
+                  <td colspan="7" class="text-center">Tidak ada data pengguna</td>
+                </tr>
+              <?php endif; ?>
             </tbody>
           </table>
         </div>
@@ -192,3 +82,7 @@
     </div>
   </div>
 </div>
+<?php
+// Menutup koneksi database
+$koneksi->close();
+?>

@@ -2,18 +2,37 @@
   <div class="col-12">
     <div class="card mb-4">
       <div class="card-header pb-0">
+      <style>
+        table {
+            width: 100%;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #6c757d;
+            border-bottom: 2px solid #e9ecef;
+        }
+        td {
+            font-size: 12px;
+        }
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 10px;
+        }
+      </style>
+      <body>
         <h6><strong>Data Produk</strong></h6>
-        
-
-<div><button type="button" class="btn btn-success btn-sm">Tambah</button>
-</div>
-        
-      
-        
-      </div>
-      <div class="card-body px-0 pt-0 pb-2">
-        <div class="table-responsive p-0">
-          <table class="table align-items-center mb-0">
+        <div class="container mt-4">
+        <div><button type="button" class="btn btn-success btn-sm">Tambah</button>
+</div> </div>
+<table class="table table-striped table-bordered mt-4">
             <thead>
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Produk </th>
@@ -26,7 +45,6 @@
                   Produk</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Stok</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
-                <th class="text-secondary opacity-7"></th>
               </tr>
             </thead>
             <tbody>
