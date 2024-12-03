@@ -1,3 +1,4 @@
+
 <?php
     $localhostName = '';
     $databaseUsername = '';
@@ -57,36 +58,37 @@
     }
 
     // Create Table Users
-$sql = "CREATE TABLE IF NOT EXISTS users (
-    id_user INT(11) AUTO_INCREMENT PRIMARY KEY,
-    nama VARCHAR(255) NOT NULL,
-    no_telp CHAR(12) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'user') NOT NULL
-)";
-if ($koneksi->query($sql) === true) {
-    echo "Tabel dibuat!: users \n";
-} else {
-    echo "Error: saat membuat tabel \n";
-}
+    $sql = "CREATE TABLE IF NOT EXISTS users (
+        id_user INT(11) AUTO_INCREMENT PRIMARY KEY,
+        nama VARCHAR(255) NOT NULL,
+        no_telp CHAR(12) NOT NULL,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        role ENUM('admin', 'user') NOT NULL
+    )";
+    if($koneksi->query($sql) === true) {
+        echo "Tabel dibuat!: users \n";
+    } else {
+        echo "Error: saat membuat tabel \n";
+    }
 
-// Create Seeder users
-$sql = "INSERT INTO users (nama, no_telp, email, password, role) VALUES 
-    ('Mahayoga', '0812345671', 'myoga.bahtiar@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-    ('Irsyad','0812345672', 'syadd@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-    ('Nisa','0812345673', 'nisa@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-    ('Citra','0812345674', 'citra@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-    ('Fila','0812345675', 'fila@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-    ('User Test','0812345678', 'user@gmail.com', '" . password_hash('user1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'user')
-";
-if ($koneksi->query($sql) === true) {
-    echo "Seeder users dibuat!: users \n";
-} else {
-    echo "Error: saat memasukkan seeder users \n";
-}
+    // Create Seeder users
+    $sql = "INSERT INTO users (nama, no_telp, email, password, role) VALUES 
+        ('Mahayoga', '0812345671', 'myoga.bahtiar@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+        ('Irsyad','0812345672', 'syadd@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+        ('Nisa','0812345673', 'nisa@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+        ('Citra','0812345674', 'citra@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+        ('Fila','0812345675', 'fila@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
 
-// Create Table Transaksi
+        ('User Test','0812345678', 'user@gmail.com', '" . password_hash('user1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'user')
+    ";
+    if($koneksi->query($sql) === true) {
+        echo "Seeder users dibuat!: users \n";
+    } else {
+        echo "Error: saat memasukkan seeder users \n";
+    }
+
+    // Create Table Transaksi
 $sql = "CREATE TABLE IF NOT EXISTS transaksi (
     transaksi_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     id_user INT(11) NOT NULL,
@@ -114,7 +116,6 @@ $sql = "INSERT INTO transaksi (id_user, nama_customer, total_produk, total_harga
 if ($koneksi->query($sql) === true) {
     echo "Seeder transaksi dibuat!: transaksi \n";
 } else {
-    echo "Error: saat memasukkan seeder transaksi \n";
+    echo "Error: saat memasukkan seeder transaksi \n";
 }
-
 ?>
