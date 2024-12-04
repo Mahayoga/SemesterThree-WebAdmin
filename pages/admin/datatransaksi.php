@@ -24,7 +24,7 @@
           </div>
           <!-- Tabel Data -->
            <div class="row">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered mt-4">
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
