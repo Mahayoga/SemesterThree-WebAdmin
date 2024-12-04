@@ -1,8 +1,5 @@
 <div class="row">
 <?php
-// Mengimpor file koneksi database
-include 'config/connection.php';
-
 // Query untuk mendapatkan data dari tabel users
 $sql = "SELECT * FROM users";
 $result = $koneksi->query($sql);

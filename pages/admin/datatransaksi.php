@@ -1,8 +1,5 @@
 <div class="row">
   <?php
-  // Mengimpor file koneksi database
-  include 'config/connection.php';
-
   // Query untuk mendapatkan data dari tabel transaksi
   $sql = "SELECT t.transaksi_id, t.id_user, u.nama AS nama_costumer, t.total_produk, t.total_harga, t.bayar, t.kembalian, t.payment_method, t.tanggal_transaksi, t.status
         FROM transaksi t
@@ -24,7 +21,7 @@
           </div>
           <!-- Tabel Data -->
            <div class="row">
-            <table class="table table-striped table-bordered mt-4">
+            <table class="table table-striped table-bordered">
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>

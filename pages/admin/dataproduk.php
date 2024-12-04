@@ -1,8 +1,5 @@
 <div class="row">
 <?php
-// Mengimpor file koneksi database
-include 'config/connection.php';
-
 // Query untuk mendapatkan data dari tabel produk
 $sql = "SELECT * FROM produk";
 $result = $koneksi->query($sql);
