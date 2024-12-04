@@ -62,6 +62,7 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
     id_user INT(11) AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(255) NOT NULL,
     no_telp CHAR(12) NOT NULL,
+    alamat VARCHAR(225) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'user') NOT NULL
@@ -73,13 +74,13 @@ if ($koneksi->query($sql) === true) {
 }
 
 // Create Seeder users
-$sql = "INSERT INTO users (nama, no_telp, email, password, role) VALUES 
-    ('Mahayoga', '0812345671', 'myoga.bahtiar@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-    ('Irsyad','0812345672', 'syadd@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-    ('Nisa','0812345673', 'nisa@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-    ('Citra','0812345674', 'citra@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-    ('Fila','0812345675', 'fila@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
-    ('User Test','0812345678', 'user@gmail.com', '" . password_hash('user1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'user')
+$sql = "INSERT INTO users (nama, no_telp, alamat, email, password, role) VALUES 
+    ('Mahayoga', '0812345671', 'jl.Besuk cak Agung', 'myoga.bahtiar@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+    ('Irsyad','0812345672', 'jl.Gresik Seru', 'syadd@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+    ('Nisa','0812345673', 'jl.Tojo Sutejo', 'nisa@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+    ('Citra','0812345674', 'jl.Mastroy', 'citra@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+    ('Fila','0812345675', 'jl.Paku Bumi', 'fila@gmail.com', '" . password_hash('admin1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'admin'),
+    ('User Test','0812345678', 'jl.Pochinki', 'user@gmail.com', '" . password_hash('user1234', PASSWORD_BCRYPT, ['cost' => 12]) . "', 'user')
     ";
     if($koneksi->query($sql) === true) {
         echo "Seeder users dibuat!: users \n";
