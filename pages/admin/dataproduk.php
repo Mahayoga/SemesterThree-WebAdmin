@@ -1,4 +1,12 @@
 <div class="row">
+<?php
+// Mengimpor file koneksi database
+include 'config/connection.php';
+
+// Query untuk mendapatkan data dari tabel users
+$sql = "SELECT * FROM produk";
+$result = $koneksi->query($sql);
+?>
   <div class="col-12">
     <div class="card mb-4">
       <div class="card-header pb-0">
@@ -275,3 +283,7 @@
     </div>
   </div>
 </div>
+<?php
+// Menutup koneksi database
+$koneksi ->close();
+?>
