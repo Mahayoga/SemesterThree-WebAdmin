@@ -1,3 +1,4 @@
+
 <?php
     $localhostName = '';
     $databaseUsername = '';
