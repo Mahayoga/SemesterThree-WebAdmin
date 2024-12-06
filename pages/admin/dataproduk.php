@@ -7,39 +7,13 @@ $result = $koneksi->query($sql);
   <div class="col-12">
     <div class="card mb-4">
       <div class="card-header pb-0">
-        <style>
-          table {
-              width: 100%;
-              margin-top: 20px;
-              font-size: 12px;
-          }
-          th, td {
-              padding: 8px;
-              text-align: left;
-          }
-          th {
-              font-size: 10px;
-              font-weight: bold;
-              text-transform: uppercase;
-              color: #6c757d;
-              border-bottom: 2px solid #e9ecef;
-          }
-          td {
-              font-size: 12px;
-          }
-          .btn-sm {
-              padding: 4px 8px;
-              font-size: 10px;
-          }
-        </style>
-        <body>
           <h6><strong>Data Produk</strong></h6>
           <div class="container mt-4">
             <div>
               <button type="button" class="btn btn-success btn-sm">Tambah</button>
             </div>
           </div>
-          <table class="table table-striped table-bordered mt-4">
+          <table class="table table-striped table-bordered mt-4" style="font-size: 14px;">
             <thead>
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Produk</th>
