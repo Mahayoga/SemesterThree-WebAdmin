@@ -1,8 +1,5 @@
 <div class="row">
   <?php
-  // Mengimpor file koneksi database
-  include 'config/connection.php';
-
   // Query untuk mendapatkan data dari tabel transaksi
   $sql = "SELECT t.transaksi_id, t.id_user, u.nama AS nama_costumer, t.total_produk, t.total_harga, t.bayar, t.kembalian, t.payment_method, t.tanggal_transaksi, t.status
         FROM transaksi t
