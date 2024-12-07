@@ -17,8 +17,9 @@ $result = $koneksi->query($sql);
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Karyawan</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Telepon</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Keahlian</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">created_at</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">updated_at</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
               </tr>
             <tbody>
@@ -27,8 +28,9 @@ $result = $koneksi->query($sql);
                   <tr>
                     <td><?php echo htmlspecialchars($no++); ?></td>
                     <td><?php echo htmlspecialchars($row['nama_karyawan']); ?></td>
-                    <td class="text-center"><?php echo htmlspecialchars($row['no_telepon']); ?></td>
-                    <td class="text-center"><?php echo htmlspecialchars($row['alamat']); ?></td>
+                    <td class="text-center"><?php echo htmlspecialchars($row['keahlian']); ?></td>
+                    <td class="text-center"><?php echo htmlspecialchars($row['created_at']); ?></td>
+                    <td class="text-center"><?php echo htmlspecialchars($row['updated_at']); ?></td>
                     <td class="align-middle">
                       <button type="button" class="btn btn-primary btn-sm">Edit</button>
                       <button type="button" class="btn btn-danger btn-sm">Hapus</button>
