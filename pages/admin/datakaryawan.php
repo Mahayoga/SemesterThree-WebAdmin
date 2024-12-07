@@ -7,32 +7,6 @@ $result = $koneksi->query($sql);
   <div class="col-12">
     <div class="card mb-4">
       <div class="card-header pb-0">
-        <style>
-          table {
-              width: 100%;
-              margin-top: 20px;
-              font-size: 12px;
-          }
-          th, td {
-              padding: 8px;
-              text-align: left;
-          }
-          th {
-              font-size: 10px;
-              font-weight: bold;
-              text-transform: uppercase;
-              color: #6c757d;
-              border-bottom: 2px solid #e9ecef;
-          }
-          td {
-              font-size: 12px;
-          }
-          .btn-sm {
-              padding: 4px 8px;
-              font-size: 10px;
-          }
-        </style>
-        <body>
           <div class="container mt-4">
             <h6><strong>Data Karyawan</strong></h6>
             <div>
@@ -40,7 +14,6 @@ $result = $koneksi->query($sql);
             </div>
           </div>
           <table class="table table-striped table-bordered mt-4">
-            <thead>
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Karyawan</th>
@@ -48,7 +21,6 @@ $result = $koneksi->query($sql);
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
               </tr>
-            </thead>
             <tbody>
               <?php if ($result->num_rows > 0): ?>
                 <?php $no = 1; while($row = $result->fetch_assoc()): ?>
