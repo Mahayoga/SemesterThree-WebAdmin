@@ -1,12 +1,9 @@
 <div class="row">
   <div class="col-12">
     <div class="card mb-4">
-      <div class="card-header pb-0">
+      <div class="card-body pb-0">
         <div class="container mt-4">
           <h6><strong>Data User</strong></h6>
-          <div>
-            <button type="button" class="btn btn-success btn-sm">Tambah</button>
-          </div>
           <table class="table table-striped table-bordered mt-4">
             <thead>
               <tr>
@@ -19,9 +16,6 @@
               </tr>
             </thead>
             <tbody id="tbody">
-              <tr>
-                <td colspan="7" class="text-center">Tidak ada data pengguna</td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -87,8 +81,28 @@
   </div>
 </div>
 
+<!-- Modal Hapus -->
+<div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pengguna</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Apakah anda akan menghapus user ini dengan nama <b id="nama_user_hapus"></b> ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-danger" id="btn-edit-simpan" onclick="hapusData()">Hapus</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   let idEdit = null;
+  let idHapus = null;
   function ambilData() {
     let xhttp = new XMLHttpRequest();
 
@@ -114,7 +128,9 @@
                   <button type="button" onclick="setEditModal(${element.id_user})" class="btn btn-secondary p-2" data-bs-toggle="modal" data-bs-target="#modalEdit">
                     Edit
                   </button>
-                  <button class="btn btn-danger p-2">Hapus</button>
+                  <button type="button" onclick="setHapusModal(${element.id_user})" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#modalHapus">
+                    Hapus
+                  </button>
                 </td>
               </tr>
             `;
@@ -200,6 +216,45 @@
     }
 
     xhttp.open("POST", "crud/simpan_edit_data.php", true);
+    xhttp.send(formData);
+  }
+  
+  function setHapusModal(id) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(this.responseText);
+        if(data.status == "success") {
+          document.getElementById("nama_user_hapus").innerText = data.data.nama_user;
+
+          idHapus = id;
+        }
+      }
+    };
+
+    xhttp.open("GET", "crud/single_data_user.php?id=" + id, true);
+    xhttp.send();
+  }
+
+  function hapusData() {
+    let xhttp = new XMLHttpRequest();
+    let formData = new FormData();
+
+    formData.append("id", idHapus);
+
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(this.responseText);
+        if(data.status == "success") {
+          alert("Data berhasil dihapus!");
+          ambilData();
+        } else if(data.status == "error") {
+          alert("Terjadi error pada server!, coba lagi nanti");
+        }
+      }
+    };
+
+    xhttp.open("POST", "crud/hapus_data_user.php", true);
     xhttp.send(formData);
   }
   ambilData();

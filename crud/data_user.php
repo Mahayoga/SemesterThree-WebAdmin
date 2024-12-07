@@ -1,7 +1,7 @@
 <?php
 include "../config/connection.php";
 
-$sql = "SELECT * FROM users";
+$sql = "SELECT * FROM users WHERE role = 'user'";
 $result = $koneksi->query($sql);
 
 $data = [];
