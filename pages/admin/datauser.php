@@ -122,13 +122,29 @@
                 <td class="fs-6">${element.email}</td>
                 <td class="fs-6">${element.role}</td>
                 <td class="fs-6">
-                  <button type="button" onclick="setDetailModal(${element.id_user})" class="btn btn-info p-2" data-bs-toggle="modal" data-bs-target="#modalDetail">
+                  <button type="button"
+                   data-id_user="${element.id_user}"
+                   data-nama_user="${element.nama_user}"
+                   data-alamat="${element.alamat}"
+                   data-no_telp="${element.no_telp}"
+                   data-email="${element.email}"
+                   data-role="${element.role}"
+                   onclick="setDetailModal(this)" class="btn btn-info p-2" data-bs-toggle="modal" data-bs-target="#modalDetail">
                     Detail
                   </button>
-                  <button type="button" onclick="setEditModal(${element.id_user})" class="btn btn-secondary p-2" data-bs-toggle="modal" data-bs-target="#modalEdit">
+                  <button 
+                   data-id_user="${element.id_user}"
+                   data-nama_user="${element.nama_user}"
+                   data-alamat="${element.alamat}"
+                   data-no_telp="${element.no_telp}"
+                   data-email="${element.email}"
+                   data-role="${element.role}"
+                  type="button" onclick="setEditModal(this)" class="btn btn-secondary p-2" data-bs-toggle="modal" data-bs-target="#modalEdit">
                     Edit
                   </button>
-                  <button type="button" onclick="setHapusModal(${element.id_user})" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#modalHapus">
+                  <button 
+                   data-id_user="${element.id_user}"
+                  type="button" onclick="setHapusModal(this)" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#modalHapus">
                     Hapus
                   </button>
                 </td>
@@ -150,44 +166,31 @@
     xhttp.send();
   }
 
-  function setDetailModal(id) {
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if(this.readyState == 4 && this.status == 200) {
-        let data = JSON.parse(this.responseText);
-        if(data.status == "success") {
-          console.log(data);
-          document.getElementById("nama_user_detail").innerHTML = data.data.nama_user;
-          document.getElementById("alamat_user_detail").innerHTML = data.data.alamat;
-          document.getElementById("no_telp_user_detail").innerHTML = data.data.no_telp;
-          document.getElementById("email_user_detail").innerHTML = data.data.email;
-          document.getElementById("role_user_detail").innerHTML = data.data.role;
-        }
-      }
-    };
-
-    xhttp.open("GET", "crud/single_data_user.php?id=" + id, true);
-    xhttp.send();
+  function setDetailModal(btnData) {
+    let nama_user = btnData.getAttribute('data-nama_user');
+    let alamat_user = btnData.getAttribute('data-alamat');
+    let no_telp_user = btnData.getAttribute('data-no_telp');
+    let email_user = btnData.getAttribute('data-email');
+    let role_user = btnData.getAttribute('data-role');
+    document.getElementById("nama_user_detail").innerHTML = nama_user;
+    document.getElementById("alamat_user_detail").innerHTML = alamat_user;
+    document.getElementById("no_telp_user_detail").innerHTML = no_telp_user;
+    document.getElementById("email_user_detail").innerHTML = email_user;
+    document.getElementById("role_user_detail").innerHTML = role_user;
   }
   
-  function setEditModal(id) {
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if(this.readyState == 4 && this.status == 200) {
-        let data = JSON.parse(this.responseText);
-        if(data.status == "success") {
-          document.getElementById("nama_user_edit").value = data.data.nama_user;
-          document.getElementById("alamat_user_edit").value = data.data.alamat;
-          document.getElementById("no_telp_user_edit").value = data.data.no_telp;
-          document.getElementById("email_user_edit").value = data.data.email;
+  function setEditModal(btnData) {
+    let id_user = btnData.getAttribute('data-id_user');
+    let nama_user = btnData.getAttribute('data-nama_user');
+    let alamat_user = btnData.getAttribute('data-alamat');
+    let no_telp_user = btnData.getAttribute('data-no_telp');
+    let email_user = btnData.getAttribute('data-email');
+    document.getElementById("nama_user_edit").value = nama_user;
+    document.getElementById("alamat_user_edit").value = alamat_user;
+    document.getElementById("no_telp_user_edit").value = no_telp_user;
+    document.getElementById("email_user_edit").value = email_user;
 
-          idEdit = id;
-        }
-      }
-    };
-
-    xhttp.open("GET", "crud/single_data_user.php?id=" + id, true);
-    xhttp.send();
+    idEdit = id_user;
   }
   
   function simpanEditData() {
@@ -211,6 +214,7 @@
         if(response.status == "success") {
           alert("Simpan berhasil");
           ambilData();
+          tutupModal();
         }
       }
     }
@@ -219,20 +223,21 @@
     xhttp.send(formData);
   }
   
-  function setHapusModal(id) {
+  function setHapusModal(btnData) {
     let xhttp = new XMLHttpRequest();
+    let id_user = btnData.getAttribute('data-id_user');
     xhttp.onreadystatechange = function() {
       if(this.readyState == 4 && this.status == 200) {
         let data = JSON.parse(this.responseText);
         if(data.status == "success") {
           document.getElementById("nama_user_hapus").innerText = data.data.nama_user;
 
-          idHapus = id;
+          idHapus = id_user;
         }
       }
     };
 
-    xhttp.open("GET", "crud/single_data_user.php?id=" + id, true);
+    xhttp.open("GET", "crud/single_data_user.php?id=" + id_user, true);
     xhttp.send();
   }
 
@@ -248,6 +253,7 @@
         if(data.status == "success") {
           alert("Data berhasil dihapus!");
           ambilData();
+          tutupModal();
         } else if(data.status == "error") {
           alert("Terjadi error pada server!, coba lagi nanti");
         }
@@ -256,6 +262,13 @@
 
     xhttp.open("POST", "crud/hapus_data_user.php", true);
     xhttp.send(formData);
+  }
+
+  function tutupModal() {
+    let listModal = document.querySelectorAll('.modal [data-bs-dismiss="modal"]');
+    listModal.forEach(element => {
+      element.click();
+    });
   }
   ambilData();
 </script>
