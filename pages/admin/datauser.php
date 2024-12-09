@@ -1,72 +1,21 @@
 <div class="row">
-<?php
-// Mengimpor file koneksi database
-include 'config/connection.php';
-
-// Query untuk mendapatkan data dari tabel users
-$sql = "SELECT * FROM users";
-$result = $koneksi->query($sql);
-?>
-<div class="col-12">
+  <div class="col-12">
     <div class="card mb-4">
-      <div class="card-header pb-0">
-        <h6><strong>Data User</strong></h6>
-        <div>
-          <button type="button" class="btn btn-success btn-sm">Tambah</button>
-        </div>
-      </div>
-      <div class="card-body px-0 pt-0 pb-2">
-        <div class="table-responsive p-0">
-          <table class="table align-items-center mb-0">
+      <div class="card-body pb-0">
+        <div class="container mt-4">
+          <h6><strong>Data User</strong></h6>
+          <table class="table table-striped table-bordered mt-4">
             <thead>
               <tr>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID User</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Telepon</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Password</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
               </tr>
             </thead>
-            <tbody>
-              <?php if ($result->num_rows > 0): ?>
-                <?php while($row = $result->fetch_assoc()): ?>
-                  <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm"><?php echo $row['id_user']; ?></h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="text-xs font-weight-bold mb-0"><?php echo $row['nama']; ?></p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="badge badge-sm bg-gradient-success"><?php echo $row['no_telp']; ?></span>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold"><?php echo $row['email']; ?></span>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">
-                        <?php echo str_repeat('•', strlen($row['password'])); ?></span>
-                      </td>
-                    <td class="align-middle text-center">
-                      <span class="badge badge-sm bg-gradient-info"><?php echo $row['role']; ?></span>
-                    </td>
-                    <td class="align-middle">
-                      <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                      <button type="button" class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                  </tr>
-                <?php endwhile; ?>
-              <?php else: ?>
-                <tr>
-                  <td colspan="7" class="text-center">Tidak ada data pengguna</td>
-                </tr>
-              <?php endif; ?>
+            <tbody id="tbody">
             </tbody>
           </table>
         </div>
@@ -74,7 +23,239 @@ $result = $koneksi->query($sql);
     </div>
   </div>
 </div>
-<?php
-// Menutup koneksi database
-$koneksi->close();
-?>
+
+<!-- Modal Detail -->
+<div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pengguna</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><b>Nama: </b><span id="nama_user_detail"></span></p>
+        <p><b>Alamat: </b><span id="alamat_user_detail"></span></p>
+        <p><b>No telepon: </b><span id="no_telp_user_detail"></span></p>
+        <p><b>Email: </b><span id="email_user_detail"></span></p>
+        <p><b>Role: </b><span id="role_user_detail"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        <!-- <button type="button" class="btn btn-primary"></button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pengguna</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-body">
+          <label for="">Nama</label>
+          <input type="text" name="nama-user-edit" id="nama_user_edit" class="form-control">
+        </div>
+        <div class="form-body">
+          <label for="">Alamat</label>
+          <input type="text" name="nama-user-edit" id="alamat_user_edit" class="form-control">
+        </div>
+        <div class="form-body">
+          <label for="">No telepon</label>
+          <input type="text" name="nama-user-edit" id="no_telp_user_edit" class="form-control">
+        </div>
+        <div class="form-body">
+          <label for="">Email</label>
+          <input type="text" name="nama-user-edit" id="email_user_edit" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-primary" id="btn-edit-simpan" onclick="simpanEditData()">Simpan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Hapus -->
+<div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pengguna</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Apakah anda akan menghapus user ini dengan nama <b id="nama_user_hapus"></b> ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-danger" id="btn-edit-simpan" onclick="hapusData()">Hapus</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let idEdit = null;
+  let idHapus = null;
+  function ambilData() {
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(this.responseText);
+        let tbody = document.getElementById("tbody");
+        let i = 1;
+        if(data.status == "success") {
+          tbody.innerHTML = "";
+          data.data.forEach(element => {
+            tbody.innerHTML += `
+              <tr>
+                <td class="fs-6">${i}</td>
+                <td class="fs-6">${element.nama_user}</td>
+                <td class="fs-6">${element.no_telp}</td>
+                <td class="fs-6">${element.email}</td>
+                <td class="fs-6">${element.role}</td>
+                <td class="fs-6">
+                  <button type="button" onclick="setDetailModal(${element.id_user})" class="btn btn-info p-2" data-bs-toggle="modal" data-bs-target="#modalDetail">
+                    Detail
+                  </button>
+                  <button type="button" onclick="setEditModal(${element.id_user})" class="btn btn-secondary p-2" data-bs-toggle="modal" data-bs-target="#modalEdit">
+                    Edit
+                  </button>
+                  <button type="button" onclick="setHapusModal(${element.id_user})" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#modalHapus">
+                    Hapus
+                  </button>
+                </td>
+              </tr>
+            `;
+            i++;
+          });
+        } else if(data.status == "error") {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="text-center">Tidak ada data pengguna</td>
+            </tr>
+          `;
+        }
+      }
+    };
+
+    xhttp.open("GET", "crud/data_user.php", true);
+    xhttp.send();
+  }
+
+  function setDetailModal(id) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(this.responseText);
+        if(data.status == "success") {
+          console.log(data);
+          document.getElementById("nama_user_detail").innerHTML = data.data.nama_user;
+          document.getElementById("alamat_user_detail").innerHTML = data.data.alamat;
+          document.getElementById("no_telp_user_detail").innerHTML = data.data.no_telp;
+          document.getElementById("email_user_detail").innerHTML = data.data.email;
+          document.getElementById("role_user_detail").innerHTML = data.data.role;
+        }
+      }
+    };
+
+    xhttp.open("GET", "crud/single_data_user.php?id=" + id, true);
+    xhttp.send();
+  }
+  
+  function setEditModal(id) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(this.responseText);
+        if(data.status == "success") {
+          document.getElementById("nama_user_edit").value = data.data.nama_user;
+          document.getElementById("alamat_user_edit").value = data.data.alamat;
+          document.getElementById("no_telp_user_edit").value = data.data.no_telp;
+          document.getElementById("email_user_edit").value = data.data.email;
+
+          idEdit = id;
+        }
+      }
+    };
+
+    xhttp.open("GET", "crud/single_data_user.php?id=" + id, true);
+    xhttp.send();
+  }
+  
+  function simpanEditData() {
+    let formData = new FormData();
+    let xhttp = new XMLHttpRequest();
+
+    let nama = document.getElementById("nama_user_edit").value;
+    let alamat = document.getElementById("alamat_user_edit").value;
+    let no_telp = document.getElementById("no_telp_user_edit").value;
+    let email = document.getElementById("email_user_edit").value;
+
+    formData.append("id", idEdit);
+    formData.append("nama_user", nama);
+    formData.append("alamat", alamat);
+    formData.append("no_telp", no_telp);
+    formData.append("email", email);
+
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        let response = JSON.parse(this.responseText);
+        if(response.status == "success") {
+          alert("Simpan berhasil");
+          ambilData();
+        }
+      }
+    }
+
+    xhttp.open("POST", "crud/simpan_edit_data.php", true);
+    xhttp.send(formData);
+  }
+  
+  function setHapusModal(id) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(this.responseText);
+        if(data.status == "success") {
+          document.getElementById("nama_user_hapus").innerText = data.data.nama_user;
+
+          idHapus = id;
+        }
+      }
+    };
+
+    xhttp.open("GET", "crud/single_data_user.php?id=" + id, true);
+    xhttp.send();
+  }
+
+  function hapusData() {
+    let xhttp = new XMLHttpRequest();
+    let formData = new FormData();
+
+    formData.append("id", idHapus);
+
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(this.responseText);
+        if(data.status == "success") {
+          alert("Data berhasil dihapus!");
+          ambilData();
+        } else if(data.status == "error") {
+          alert("Terjadi error pada server!, coba lagi nanti");
+        }
+      }
+    };
+
+    xhttp.open("POST", "crud/hapus_data_user.php", true);
+    xhttp.send(formData);
+  }
+  ambilData();
+</script>
