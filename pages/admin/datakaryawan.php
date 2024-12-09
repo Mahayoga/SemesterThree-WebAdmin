@@ -45,11 +45,11 @@
         </div>
         <div class="form-body">
           <label for="">Keahlian</label>
-          <input type="text" name="keahlian-tambah" id="keahlian_tambah" class="form-control">
+          <input type="text" name="keahlian-tambah" id="keahlian_karyawan_tambah" class="form-control">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-          <button type="button" class="btn btn-primary" id="btn-edit-simpan" onclick="simpanEditData()">Simpan</button>
+          <button type="button" class="btn btn-primary" id="btn-edit-simpan" onclick="simpanDataKaryawan()">Simpan</button>
         </div>
       </div>
     </div>
@@ -198,6 +198,31 @@
     document.getElementById("keahlian_karyawan_edit").value = keahlian_karyawan;
 
     idEdit = id;
+  }
+
+  function simpanDataKaryawan() {
+    let xhttp = new XMLHttpRequest();
+    let formData = new FormData();
+
+    let nama_karyawan = document.getElementById('nama_karyawan_tambah').value;
+    let keahlian_karyawan = document.getElementById('keahlian_karyawan_tambah').value;
+
+    formData.append('nama_karyawan', nama_karyawan);
+    formData.append('keahlian_karyawan', keahlian_karyawan);
+
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(this.responseText);
+        if(data.status == "success") {
+          alert("Tambah data berhasil!");
+          ambilData();
+          tutupModal();
+        }
+      }
+    };
+
+    xhttp.open('POST', 'crud/simpan_data_karyawan.php', true);
+    xhttp.send(formData);
   }
 
   function simpanEditData() {
