@@ -1,7 +1,7 @@
 <?php
 include "../config/connection.php";
 
-$sql = "SELECT * FROM users";
+$sql = "SELECT * FROM karyawan";
 $result = $koneksi->query($sql);
 
 $data = [];

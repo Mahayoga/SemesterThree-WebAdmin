@@ -63,18 +63,18 @@
   </div>
 
   <script>
-    // Fungsi untuk memuat data transaksi
+    // Fungsi untuk mengambil data transaksi
     function ambilData() {
-      let xhttp = new XMLHttpRequest();
+      const xhttp = new XMLHttpRequest();
 
       xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-          let data = JSON.parse(this.responseText);
-          let tbody = document.getElementById("transactionBody");
-
-          if (data.status === "success" && data.data.length > 0) {
+          const data = JSON.parse(this.responseText);
+          const tbody = document.getElementById("transactionBody");
+          
+          if (data.status === "success") {
             tbody.innerHTML = "";
-            data.data.forEach((element, index) => {
+            data.data.forEach((element) => {
               tbody.innerHTML += `
                 <tr>
                   <td>${element.id_transaksi}</td>
@@ -83,13 +83,25 @@
                   <td>${element.kembalian}</td>
                   <td>${element.created_at}</td>
                   <td>
-                    <button class="btn btn-info btn-sm" onclick="setDetailModal(${element.id_transaksi})" data-bs-toggle="modal" data-bs-target="#modalDetail">Detail</button>
+                    <button type="button"
+                      data-id_transaksi="${element.id_transaksi}"
+                      data-total="${element.total}"
+                      data-bayar="${element.bayar}"
+                      data-kembalian="${element.kembalian}"
+                      data-method_pembayaran="${element.method_pembayaran}"
+                      data-id_user="${element.id_user}"
+                      data-id_karyawan="${element.id_karyawan}"
+                      data-created_at="${element.created_at}"
+                      onclick="setDetailModal(this)"
+                      class="btn btn-info btn-sm"
+                      data-bs-toggle="modal" data-bs-target="#modalDetail">
+                      Detail
+                    </button>
                   </td>
-                </tr>
-              `;
+                </tr>`;
             });
           } else {
-            tbody.innerHTML = '<tr><td colspan="6" class="text-center">Tidak ada data transaksi</td></tr>';
+            tbody.innerHTML = `<tr><td colspan="6" class="text-center">Tidak ada data transaksi</td></tr>`;
           }
         }
       };
@@ -99,58 +111,56 @@
     }
 
     // Fungsi untuk menampilkan detail transaksi di modal
-    function setDetailModal(id) {
-      let xhttp = new XMLHttpRequest();
-
-      xhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-          let data = JSON.parse(this.responseText);
-
-          if (data.status === "success" && data.data) {
-            document.getElementById("detail_id_transaksi").textContent = data.data.id_transaksi || "-";
-            document.getElementById("detail_total").textContent = data.data.total || "-";
-            document.getElementById("detail_bayar").textContent = data.data.bayar || "-";
-            document.getElementById("detail_kembalian").textContent = data.data.kembalian || "-";
-            document.getElementById("detail_method_pembayaran").textContent = data.data.method_pembayaran || "-";
-            document.getElementById("detail_id_user").textContent = data.data.id_user || "-";
-            document.getElementById("detail_id_karyawan").textContent = data.data.id_karyawan || "-";
-            document.getElementById("detail_created_at").textContent = data.data.created_at || "-";
-          } else {
-            alert("Data detail tidak ditemukan.");
-          }
-        }
-      };
-
-      xhttp.open("GET", `crud/single_datatransaksi.php?id_transaksi=${id}`, true);
-      xhttp.send();
+    function setDetailModal(btnData) {
+      let id_transaksi = btnData.getAttribute("data-id_transaksi");
+      let total_transaksi = btnData.getAttribute("data-total");
+      let bayar_transaksi = btnData.getAttribute("data-bayar");
+      let kembalian_transaksi = btnData.getAttribute("data-kembalian");
+      let method_pembayaran_transaksi = btnData.getAttribute("data-method_pembayaran");
+      let id_user_transaksi = btnData.getAttribute("data-id_user");
+      let id_karyawan_transaksi = btnData.getAttribute("data-id_karyawan");
+      let created_at_transaksi = btnData.getAttribute("data-created_at");
+      document.getElementById("detail_id_transaksi").innerHTML = id_transaksi;
+      document.getElementById("detail_total").innerHTML = total_transaksi;
+      document.getElementById("detail_bayar").innerHTML = bayar_transaksi;
+      document.getElementById("detail_kembalian").innerHTML = kembalian_transaksi;
+      document.getElementById("detail_method_pembayaran").innerHTML = method_pembayaran_transaksi;
+      document.getElementById("detail_id_user").innerHTML = id_user_transaksi;
+      document.getElementById("detail_id_karyawan").innerHTML = id_karyawan_transaksi;
+      document.getElementById("detail_created_at").innerHTML = created_at_transaksi;
     }
+  
 
     // Fungsi untuk memfilter data berdasarkan tanggal
     function searchByDate() {
-  const startDate = document.getElementById("startDate").value;
-  const endDate = document.getElementById("endDate").value;
-  const rows = document.querySelectorAll("#transactionBody tr");
+      const startDate = document.getElementById("startDate").value;
+      const endDate = document.getElementById("endDate").value;
+      const rows = document.querySelectorAll("#transactionBody tr");
 
-  if (!startDate || !endDate) {
-    alert("Harap isi kedua tanggal untuk memfilter.");
-    return;
-  }
+      if (!startDate || !endDate) {
+        alert("Harap isi kedua tanggal untuk memfilter.");
+        return;
+      }
 
-  rows.forEach(row => {
-    const dateCell = row.children[4]; // Kolom "Created At" berada di indeks ke-4
+      rows.forEach(row => {
+        const dateCell = row.children[4]; // Kolom "Created At" berada di indeks ke-4
 
-    if (dateCell) {
-      const timestamp = dateCell.textContent.trim();
-      const dateOnly = timestamp.split(" ")[0]; // Ambil bagian tanggal saja (YYYY-MM-DD)
+        if (dateCell) {
+          const dateOnly = dateCell.textContent.trim().split(" ")[0]; // Ambil bagian tanggal saja (YYYY-MM-DD)
 
-      // Bandingkan tanggal
-      row.style.display = (dateOnly >= startDate && dateOnly <= endDate) ? "" : "none";
+          // Bandingkan tanggal
+          row.style.display = (dateOnly >= startDate && dateOnly <= endDate) ? "" : "none";
+        }
+      });
     }
-  });
-}
 
-
-    // Memuat data saat halaman selesai dimuat
-    document.addEventListener("DOMContentLoaded", ambilData);
+    // Panggil fungsi untuk memuat data saat halaman selesai dimuat
+    function tutupModal() {
+    let listModal = document.querySelectorAll('.modal [data-bs-dismiss="modal"]');
+    listModal.forEach(element => {
+      element.click();
+    });
+  }
+  ambilData();
   </script>
 </div>
