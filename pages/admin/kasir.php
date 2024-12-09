@@ -1,30 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "barbershop";
-
-// Membuat koneksi
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Mengecek koneksi
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT MAX(transaksi_id) AS last_id FROM transaksi";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $lastId = $row['last_id'];
-    $nextId = $lastId + 1;
-    echo json_encode(["next_id" => $nextId]);
-} else {
-    echo json_encode(["next_id" => 1]); // Jika tidak ada data transaksi, mulai dari ID 1
-}
-
-$conn->close();
+$koneksi = new mysqli("localhost", "root", "", "barbershop");
 ?>
 
 <div class="container">
@@ -259,3 +234,7 @@ $conn->close();
         });
     }
   </script>
+<?php
+// Menutup koneksi database
+$koneksi->close();
+?>
