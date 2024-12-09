@@ -58,7 +58,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link <?php if(@$_GET['hal'] == 'billing') {echo 'active';}?>" href="?hal=billing">
+        <a class="nav-link <?php if(@$_GET['hal'] == 'kasir') {echo 'active';}?>" href="?hal=kasir">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
           </div>
