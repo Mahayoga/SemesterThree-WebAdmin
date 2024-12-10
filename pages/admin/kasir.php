@@ -58,9 +58,10 @@ $koneksi = new mysqli("localhost", "root", "", "barbershop");
                   <td>
                     <select class="form-select produk-select" onchange="updateHarga(this)">
                       <option value="">Pilih Produk</option>
-                      <option value="Haircut">Haircut</option>
-                      <option value="Hairwash">Hairwash</option>
-                      <option value="Keratin">Keratin</option>
+                      <option value="Haircut1">Haircut 1</option>
+                      <option value="Haircut2">Haircut 2</option>
+                      <option value="Paket1">Paket 1</option>
+                      <option value="Paket2">Paket 2</option>
                     </select>
                   </td>
                   <td><input type="number" class="form-control" min="1" value="1" onchange="updateTotal()"></td>
@@ -92,9 +93,10 @@ $koneksi = new mysqli("localhost", "root", "", "barbershop");
 
   <script>
     const hargaProduk = {
-      Haircut: 35000,
-      Hairwash: 10000,
-      Keratin: 150000
+      Haircut1: 15000,
+      Haircut2: 20000,
+      Paket1: 25000,
+      Paket2: 30000
     };
 
     function updateHarga(selectElement) {
@@ -112,9 +114,10 @@ $koneksi = new mysqli("localhost", "root", "", "barbershop");
           <td>
             <select class="form-select produk-select" onchange="updateHarga(this)">
               <option value="">Pilih Produk</option>
-              <option value="Haircut">Haircut</option>
-              <option value="Hairwash">Hairwash</option>
-              <option value="Keratin">Keratin</option>
+              <option value="Haircut1">Haircut 1</option>
+              <option value="Haircut2">Haircut 2</option>
+              <option value="Paket1">Paket 1</option>
+              <option value="Paket2">Paket 2</option>
             </select>
           </td>
           <td><input type="number" class="form-control" min="1" value="1" onchange="updateTotal()"></td>
@@ -222,16 +225,16 @@ $koneksi = new mysqli("localhost", "root", "", "barbershop");
     });
 
     function fetchNextTransactionId() {
-      fetch("pages/admin/datatransaksi.php")
-        .then(response => response.json())
-        .then(data => {
-          // Assuming the returned data contains the next transaction ID
-          const nextTransactionId = data.next_id;
-          document.getElementById("transaksi_id").value = nextTransactionId;
-        })
-        .catch(error => {
-          console.error("Error fetching transaction ID:", error);
-        });
+        fetch("pages/admin/datatransaksi.php")
+            .then(response => response.json())
+            .then(data => {
+                const nextTransactionId = data?.next_id || "TRX-0001";
+                document.getElementById("transaksi_id").value = nextTransactionId;
+            })
+            .catch(error => {
+                console.error("Error fetching transaction ID:", error);
+                document.getElementById("transaksi_id").value = "TRX-0001";
+            });
     }
   </script>
 <?php
