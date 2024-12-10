@@ -4,11 +4,9 @@
       <div class="card-body p-3">
         <div class="row">
           <div class="col-8">
-            <div class="numbers">
+          <div class="numbers">
               <p class="text-sm mb-0 text-uppercase font-weight-bold">Uang Hari ini</p>
-              <h5 class="font-weight-bolder">
-                Rp. 300.000
-              </h5>
+              <h5 class="font-weight-bolder" id="uangHariIni">Rp. 0</h5>
               <p class="mb-0">
                 <span class="text-success text-sm font-weight-bolder">+55%</span>
                 Sejak Kemarin
@@ -237,3 +235,23 @@
     </div>
   </div>
 </div>
+
+<!-- Script untuk Fetch Data -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Fetch data pendapatan harian
+    fetch("fetch_pendapatan.php")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("HTTP status " + response.status);
+        }
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById("uangHariIni").textContent = "Rp. " + data;
+      })
+      .catch(error => {
+        console.error("Gagal memuat data pendapatan:", error);
+      });
+  });
+</script>
