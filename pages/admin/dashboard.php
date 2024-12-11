@@ -98,28 +98,11 @@
   </div>
 </div>
 <div class="row mt-7">
-  <div class="col-lg-7">
-  <iframe title="Transaksi" width="1140" height="541.25" 
-              src="https://app.powerbi.com/reportEmbed?reportId=9c862a39-52b3-4c53-8b5b-fa5dcfeefc99&autoAuth=true&ctid=5263cc81-5912-42c4-abc1-d0f1b668b530" 
-              frameborder="0" allowFullScreen="true">
-            </iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    </div>
-        </div>
-            <button class="carousel-control-prev w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
+  <div class="col-lg-12">
+    <iframe title="Transaksi" class="w-100" height="541.25" 
+      src="https://app.powerbi.com/reportEmbed?reportId=9c862a39-52b3-4c53-8b5b-fa5dcfeefc99&autoAuth=true&ctid=5263cc81-5912-42c4-abc1-d0f1b668b530" 
+      frameborder="0" allowFullScreen="true">
+    </iframe>
   </div>
 </div>
 <div class="row mt-4">
