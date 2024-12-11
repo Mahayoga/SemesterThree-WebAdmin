@@ -9,7 +9,7 @@
   <title>
     Barber
   </title>
-  <!--     Fonts and icons     -->
+  <!-- Fonts and icons -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
@@ -20,28 +20,35 @@
   <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show bg-gray-100">
   <div class="min-height-300 bg-dark position-absolute w-100"></div>
-  <?php include 'sidebar.php';?>
-  <main class="main-content position-relative border-radius-lg ">
+  
+  <!-- Sidebar -->
+  <?php include 'sidebar.php'; ?>
+
+  <main class="main-content position-relative border-radius-lg">
     <!-- Navbar -->
-    <?php include 'navbar.php';?>
+    <?php include 'navbar.php'; ?>
     <!-- End Navbar -->
+
     <div class="container-fluid py-4">
+      <!-- Konten dinamis -->
       <?php
         $hal = @$_GET['hal'];
         $beranda = "pages/admin/dashboard.php";
         $p = "pages/admin/$hal.php";
-        if(!empty($hal) && file_exists($p)){
+        if (!empty($hal) && file_exists($p)) {
           include "$p";
-        }else{
+        } else {
           include "$beranda";
         }
       ?>
-      <?php include 'footer.php'?>
+      <!-- Footer -->
+      <?php include 'footer.php'; ?>
     </div>
   </main>
-  <!--   Core JS Files   -->
+
+  <!-- Core JS Files -->
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -71,7 +78,6 @@
           fill: true,
           data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
           maxBarThickness: 6
-
         }],
       },
       options: {
@@ -131,6 +137,7 @@
       },
     });
   </script>
+  
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -142,7 +149,7 @@
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <!-- Control Center for Soft Dashboard -->
   <script src="assets/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
 
