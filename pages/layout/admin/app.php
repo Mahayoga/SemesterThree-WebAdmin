@@ -43,7 +43,7 @@
           include "$beranda";
         }
       ?>
-      <!-- Footer
+      <!-- Footer -->
       <?php include 'footer.php'; ?>
     </div>
   </main>
