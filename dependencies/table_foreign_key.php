@@ -14,8 +14,8 @@ $sql = [
 foreach($sql as $item) {
     if ($koneksi->query($item) === true) {
     } else {
-        echo "Error: saat membuat tabel index foreign key!\n";
+        echo "Error: saat membuat tabel index foreign key!<br>";
     }
 }
 
-echo "Tabel index foreign key berhasil dibuat! \n";
+echo "Tabel index foreign key berhasil dibuat! <br>";

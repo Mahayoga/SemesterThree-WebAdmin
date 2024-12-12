@@ -20,8 +20,8 @@ $sql = [
 foreach($sql as $item) {
     if ($koneksi->query($item) === true) {
     } else {
-        echo "Error: saat membuat tabel index!\n";
+        echo "Error: saat membuat tabel index!<br>";
     }
 }
 
-echo "Tabel index berhasil dibuat! \n";
+echo "Tabel index berhasil dibuat! <br>";
