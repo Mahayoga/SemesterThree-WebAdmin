@@ -1,6 +1,6 @@
 
 <?php
-    $database = $env["DATABASE_NAME"];
+    $database = $env["barbershop"];
     // Dropping Database
     echo "Sedang me-reset database $database \n";
     $sql = "DROP DATABASE IF EXISTS $database";
