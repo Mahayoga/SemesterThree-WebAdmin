@@ -20,10 +20,10 @@ if ($koneksi->query($sql) === true) {
 
 $sql = "
     INSERT INTO `jasa` (`id_jasa`, `nama_jasa`, `harga_jasa`) VALUES
-    (1, 'Cukur Rambut', '50000'),
-    (2, 'Cukur + Styling', '75000'),
-    (3, 'Cukur Anak', '35000');
-
+    (1, 'Haircut 1 - anak anak', '15000'),
+    (2, 'Haircut 2 - dewasa', '20000'),
+    (3, 'Paket 1 - haircut+hairwash', '25000'),
+    (4, 'Paket 2 - haircut+hairwash+styling pomade/vitamin', '30000');
 ";
 
 if ($koneksi->query($sql) === true) {

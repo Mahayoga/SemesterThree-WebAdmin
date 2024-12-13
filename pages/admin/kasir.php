@@ -33,15 +33,8 @@ $koneksi
                                 <label for="customer" class="form-label">Customer</label>
                                 <select class="form-select" id="customer">
                                     <option value="Umum">Umum</option>
-                                    <?php
-                                    $result = $koneksi->query("SELECT id_customers, nama FROM customers");
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<option value='{$row['id_customers']}'>{$row['nama']}</option>";
-                                    }
-                                    ?>
                                 </select>
                             </div>
-
                             <div class="col-md-4 mt-3" id="not-registered-customer" style="display: none;">
                                 <label for="new-customer" class="form-label">Nama User</label>
                                 <input type="text" class="form-control" id="new-customer" placeholder="Masukkan nama user">
@@ -59,11 +52,15 @@ $koneksi
                                 <label for="service" class="form-label">Service</label>
                                 <select class="form-select" id="service">
                                     <option value="" disabled selected>Select Service</option>
-                                    <option value="15000" data-name="Haircut 1">Haircut 1 - anak anak</option>
-                                    <option value="20000" data-name="Haircut 2">Haircut 2 - dewasa</option>
-                                    <option value="25000" data-name="Paket 1">Paket 1 - haircut+hairwash</option>
-                                    <option value="30000" data-name="Paket 2">Paket 2 - haircut+hairwash+styling pomade/vitamin</option>
-                                </select>
+                                    <?php foreach ($service_list as $serv):?>
+                                        <option value="<?= $serv['id_jasa']?>"
+                                        <?= (isset($_GET['id_jasa']) && $_GET['id_jasa'] == $serv['id_jasa']) ? 'selected' : '' ?>
+                                        >
+                                        <?= htmlspecialchars($serv['nama_jasa']) ?>
+                                            
+                                        </option>
+                                        <?php endforeach;?>
+                                    </select>
                             </div>
                             <div class="col-md-3">
                                 <label for="qty" class="form-label">Qty</label>
