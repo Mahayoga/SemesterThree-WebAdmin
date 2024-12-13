@@ -1,29 +1,32 @@
 
 <?php
-    $database = $env["barbershop"];
+    if(@$env == null && @$koneksi == null) {
+        include "../config/connection.php";
+    }
+    $database = $env["DATABASE_NAME"];
     // Dropping Database
-    echo "Sedang me-reset database $database \n";
+    echo "Sedang me-reset database $database <br>";
     $sql = "DROP DATABASE IF EXISTS $database";
     if($koneksi->query($sql) === true) {
-        echo "Reset database berhasil!: $database \n";
+        echo "Reset database berhasil!: $database <br>";
     } else {
-        echo "Error: saat me-reset database \n";
+        echo "Error: saat me-reset database <br>";
     }
 
     // Create Database
     $sql = "CREATE DATABASE IF NOT EXISTS $database";
     if($koneksi->query($sql) === true) {
-        echo "Database dibuat!: $database \n";
+        echo "Database dibuat!: $database <br>";
     } else {
-        echo "Error: saat membuat database \n";
+        echo "Error: saat membuat database <br>";
     }
 
     // Use Database
     $sql = "USE $database";
     if($koneksi->query($sql) === true) {
-        echo "Use berhasil!: $database \n";
+        echo "Use berhasil!: $database <br>";
     } else {
-        echo "Error: saat men-select database \n";
+        echo "Error: saat men-select database <br>";
     }
 
     // Create Table Users
