@@ -21,6 +21,15 @@ $koneksi
                                 <input type="text" class="form-control" id="cashier" value="Admin" readonly>
                             </div>
                             <div class="col-md-4">
+                                <label for="customer-status" class="form-label">Customer Status</label>
+                                <select class="form-select" id="customer-status">
+                                    <option value="registered">Terdaftar</option>
+                                    <option value="not_registered">Tidak Terdaftar</option>
+                                    <option value="recorded">Pernah Tercatat</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 mt-3" id="registered-customer">
                                 <label for="customer" class="form-label">Customer</label>
                                 <select class="form-select" id="customer">
                                     <option value="Umum">Umum</option>
@@ -32,12 +41,19 @@ $koneksi
                                     ?>
                                 </select>
                             </div>
-                            <div class="col-md-4 mt-3">
-                                <label for="invoice" class="form-label">Invoice</label>
-                                <input type="text" class="form-control" id="invoice" value="INV<?php echo date('YmdHis'); ?>" readonly>
+
+                            <div class="col-md-4 mt-3" id="not-registered-customer" style="display: none;">
+                                <label for="new-customer" class="form-label">Nama User</label>
+                                <input type="text" class="form-control" id="new-customer" placeholder="Masukkan nama user">
+                            </div>
+
+                            <div class="col-md-4 mt-3" id="recorded-customer" style="display: none;">
+                                <label for="recorded-customer-list" class="form-label">Customer Pernah Tercatat</label>
+                                <select class="form-select" id="recorded-customer-list">
+                                    <option value="">Pilih Customer</option>
+                                </select>                                   
                             </div>
                         </div>
-
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="service" class="form-label">Service</label>
@@ -181,6 +197,16 @@ $koneksi
         const selectedOption = this.options[this.selectedIndex];
         const price = selectedOption.value;
         document.getElementById('price').value = price;
+    });
+
+    //customer
+    document.getElementById('customer-status').addEventListener('change', function () {
+    const status = this.value;
+
+    // Menampilkan atau menyembunyikan field berdasarkan status
+    document.getElementById('registered-customer').style.display = status === 'registered' ? 'block' : 'none';
+    document.getElementById('not-registered-customer').style.display = status === 'not_registered' ? 'block' : 'none';
+    document.getElementById('recorded-customer').style.display = status === 'recorded' ? 'block' : 'none';
     });
 
     // Add item functionality
