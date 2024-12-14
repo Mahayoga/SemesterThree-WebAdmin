@@ -2,7 +2,7 @@
 include "../config/connection.php";
 
 $id = $_GET['id'];
-$sql = "SELECT * FROM karyawan WHERE id_karyawan = $id";
+$sql = "SELECT * FROM produk WHERE id_produk = $id";
 $result = $koneksi->query($sql);
 
 if($result->num_rows > 0) {
