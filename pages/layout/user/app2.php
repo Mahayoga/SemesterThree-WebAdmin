@@ -158,7 +158,8 @@
 
       <div class="container">
         <div class="row gy-4 justify-content-center">
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="row justify-content-center mb-4">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item position-relative">
               <div class="icon">
                 <i class="bi bi-emoji-grin"></i>
@@ -180,22 +181,19 @@
               </a>
               <p>SMP - Lanjut Usia</p>
             </div>
-          </div>
-
-          <li>
-            
-          </li>
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-scissors"></i>
+          </div><!-- End Service Item --></div>
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+              <div class="service-item position-relative">
+                <div class="icon">
+                  <i class="bi bi-scissors"></i>
+                </div>
+                <a href="service-details.html" class="stretched-link">
+                  <h3>Paket 1</h3>
+                </a>
+                <p>Potong + Keramas</p>
               </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Paket 1</h3>
-              </a>
-              <p>Potong + Keramas</p>
-            </div>
-          </div>
+            </div><!-- End Service Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="service-item position-relative">
@@ -210,6 +208,7 @@
           </div>
         </div>
       </div>
+    </div>
 
     </section>
     <section id="contact" class="contact section">
@@ -279,7 +278,7 @@
       </div>
       <div class="container">
         <div class="copyright">
-          <span>Copyright</span> <strong class="px-1 sitename">Siimple</strong> <span>All Rights Reserved</span>
+          <span>Copyright</span> <strong class="px-1 sitename">Green Head</strong> <span>All Rights Reserved</span>
         </div>
         <div class="credits">
           Made With ♡ by <a href="https://bootstrapmade.com/">C2</a>
