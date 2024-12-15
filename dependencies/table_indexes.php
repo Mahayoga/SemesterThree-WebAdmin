@@ -14,7 +14,7 @@ $sql = [
     "ALTER TABLE `karyawan` MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT;",
     "ALTER TABLE `produk` MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT;",
     "ALTER TABLE `transaksi` MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT;",
-    "ALTER TABLE `users` MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;"
+    "ALTER TABLE `users` MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;",
 ];
 
 foreach($sql as $item) {
