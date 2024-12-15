@@ -7,30 +7,17 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <!-- Favicons -->
-  <link href="assets/user/img/favicon.png" rel="icon">
-  <link href="assets/user/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="assets/user/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/user/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/user/vendor/aos/aos.css" rel="stylesheet">
 
-  <!-- Main CSS File -->
   <link href="assets/user/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Siimple
-  * Template URL: https://bootstrapmade.com/free-bootstrap-landing-page/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <link rel="icon" type="image/png" href="assets/img/logobaru.png">
+  <title>GreenHead</title>
 </head>
 
 <body class="index-page" id="hehe">
@@ -38,9 +25,7 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/user/img/logo.png" alt=""> -->
-        <h1 class="sitename"><b>Green Head</b></h1>
+        <h1 class="sitename"><b>GreenHead</b></h1>
       </a>
       <nav id="navmenu" class="navmenu">
         <ul>
@@ -74,33 +59,30 @@
   </header>
 
   <main class="main">
-    <!-- Hero Section -->
     <section id="hero" class="hero section">
       <img src="assets/user/img/hero-bg.jpg" alt="" data-aos="fade-in" class="">
       <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
         <div class="row justify-content-center">
           <div class="col-lg-8">
-            <h2>Selamat Datang di Green Head</h2>
+            <h2>Selamat Datang di GreenHead</h2>
             <a href="#about" class="btn-get-started">Lanjutkan</a>
           </div>
         </div>
       </div>
-    </section><!-- /Hero Section -->
+    </section>
 
-    <!-- About Section -->
     <section id="about" class="about section">
-      <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Tentang</h2>
         <p>Anda telah menemukan tempat yang pas untuk Glow Up</p>
-      </div><!-- End Section Title -->
+      </div>
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
           <div class="col-lg-6">
             <img src="assets/user/img/newlogo.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 content">
-            <h3>Mengenal apa itu Green Head?</h3>
+            <h3>Mengenal apa itu GreenHead?</h3>
             <p class="fst-italic">
               Green Head adalah tempat Cukur para Pria, dimana orang orang ingin mengubah tampilan khususnya di area kepala (Rambut) sehingga dapat terlihat lebih menawan.
             </p>
@@ -115,15 +97,13 @@
           </div>
         </div>
       </div>
-    </section><!-- /About Section -->
+    </section>
 
-    <!-- Why Us Section -->
     <section id="why-us" class="why-us section">
-      <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Kenapa Kami?</h2>
+        <h2>Kenapa Harus Memilih Kami?</h2>
         <p>Karena kami adalah Barber Profesional di Kota Jember.</p>
-      </div><!-- End Section Title -->
+      </div>
 
       <div class="container">
         <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
@@ -133,12 +113,12 @@
                 <img src="assets/user/img/why-us-1.jpg" alt="" class="img-fluid">
                 <div class="icon"><i class="bi bi-hdd-stack"></i></div>
               </div>
-              <h2 class="title"><a href="#" class="stretched-link">Our Mission</a></h2>
+              <h2 class="title"><a href="#" class="stretched-link">Visi Kami</a></h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Mitra dan Solusi bagi masyarakat dengan memberikan pelayanan prima atas kebutuhan dalam hal penataan rambut pria yang up to date untuk memberikan gaya dan kerapihan dalam kehidupan.
               </p>
             </div>
-          </div><!-- End Card Item -->
+          </div>
 
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card">
@@ -146,12 +126,14 @@
                 <img src="assets/user/img/why-us-2.jpg" alt="" class="img-fluid">
                 <div class="icon"><i class="bi bi-brightness-high"></i></div>
               </div>
-              <h2 class="title"><a href="#" class="stretched-link">Our Plan</a></h2>
+              <h2 class="title"><a href="#" class="stretched-link">Misi Kami</a></h2>
               <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+              Memberikan pelayanan yang baik/full dan berkualitas demi kepuasan pelanggan, 
+              Menerapkan Akhlaq yang baik senyum, salam, sapa, sopan, santun demi kenyamanan konsumen serta 
+              Menjalin hubungan yang baik kepada konsumen maupun kepada seluruh karyawan demi kemajuan bersama
               </p>
             </div>
-          </div><!-- End Card Item -->
+          </div>
 
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
             <div class="card">
@@ -159,25 +141,23 @@
                 <img src="assets/user/img/why-us-3.jpg" alt="" class="img-fluid">
                 <div class="icon"><i class="bi bi-calendar4-week"></i></div>
               </div>
-              <h2 class="title"><a href="#" class="stretched-link">Our Vision</a></h2>
+              <h2 class="title"><a href="#" class="stretched-link">Rencana Kami</a></h2>
               <p>
-                Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
+                Mengembangkan
               </p>
             </div>
-          </div><!-- End Card Item -->
+          </div>
         </div>
       </div>
-    </section><!-- /Why Us Section -->
+    </section>
 
-    <!-- Services Section -->
     <section id="services" class="services section light-background">
-      <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Paket Kami</h2>
-      </div><!-- End Section Title -->
+      </div>
 
       <div class="container">
-        <div class="row gy-4">
+        <div class="row gy-4 justify-content-center">
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item position-relative">
               <div class="icon">
@@ -188,7 +168,7 @@
               </a>
               <p>Khusus Untuk Kelas 1 - 6 SD</p>
             </div>
-          </div><!-- End Service Item -->
+          </div>
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item position-relative">
@@ -200,7 +180,7 @@
               </a>
               <p>SMP - Lanjut Usia</p>
             </div>
-          </div><!-- End Service Item -->
+          </div>
 
           <li>
             
@@ -215,7 +195,7 @@
               </a>
               <p>Potong + Keramas</p>
             </div>
-          </div><!-- End Service Item -->
+          </div>
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="service-item position-relative">
@@ -227,17 +207,15 @@
               </a>
               <p>Potong, Keramas, Styling Pomade/Vitamin</p>
             </div>
-          </div><!-- End Service Item -->
+          </div>
         </div>
       </div>
 
-    </section><!-- /Services Section -->
-    <!-- Contact Section -->
+    </section>
     <section id="contact" class="contact section">
-      <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Kontak Kami</h2>
-      </div><!-- End Section Title -->
+      </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
@@ -247,7 +225,7 @@
               <h3>Alamat</h3>
               <a href="https://maps.apple.com/?address=gang%20mastrip%203%20No.%2066,%20Jember,%20East%20Java%2068124,%20Indonesia&auid=1849573525528465069&ll=-8.161000,113.725347&lsp=9902&q=Greenhead%20Barbershop&_ext=CjEKBAgEEEUKBAgFEAMKBAgGEGcKBAgKEAAKBAhSEAEKBAhVEA8KBAhZEAIKBQjBARABEiYpvpsTIK9UIMAxbTZWYh5uXEA5eC7nrRVQIMBB8kOlEbNuXEBQBA%3D%3D"><p>Lihat Lokasi</p></a>
             </div>
-          </div><!-- End Info Item -->
+          </div>
 
           <div class="col-lg-4">
             <div class="info-item d-flex flex-column justify-content-center align-items-center info-item-borders">
@@ -255,7 +233,7 @@
               <h3>No Telp</h3>
               <a href="tel:+6285785089258"><p>Hubungi Kami Melalui No Telepon</p></a>
             </div>
-          </div><!-- End Info Item -->
+          </div>
 
           <div class="col-lg-4">
             <div class="info-item d-flex flex-column justify-content-center align-items-center">
@@ -263,7 +241,7 @@
               <h3>Email</h3>
               <a href="mailto:greenhead@gmail.com"><p>Hubungi Kami Melalui Email</p></a>
             </div>
-          </div><!-- End Info Item -->
+          </div>
         </div>
 
         <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
@@ -287,9 +265,9 @@
               <button type="submit">Kirim Pesan</button>
             </div>
           </div>
-        </form><!-- End Contact Form -->
+        </form>
       </div>
-    </section><!-- /Contact Section -->
+    </section>
   </main>
 
   <footer id="footer" class="footer light-background">
@@ -304,28 +282,20 @@
           <span>Copyright</span> <strong class="px-1 sitename">Siimple</strong> <span>All Rights Reserved</span>
         </div>
         <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you've purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-          Designed by <a href="https://bootstrapmade.com/">Barber Tim</a>
+          Made With ♡ by <a href="https://bootstrapmade.com/">C2</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Preloader -->
   <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
   <script src="assets/user/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/user/vendor/php-email-form/validate.js"></script>
   <script src="assets/user/vendor/aos/aos.js"></script>
 
-  <!-- Main JS File -->
   <script src="assets/user/js/main.js"></script>
 
 </body>
