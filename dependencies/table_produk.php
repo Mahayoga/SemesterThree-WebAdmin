@@ -16,9 +16,9 @@ $sql = "
 ";
 
 if ($koneksi->query($sql) === true) {
-    echo "Tabel dibuat!: $nama_tabel \n";
+    echo "Tabel dibuat!: $nama_tabel <br>";
 } else {
-    echo "Error: saat membuat tabel $nama_tabel\n";
+    echo "Error: saat membuat tabel $nama_tabel<br>";
 }
 
 $sql = "
@@ -29,7 +29,7 @@ $sql = "
 ";
 
 if ($koneksi->query($sql) === true) {
-    echo "Seeder dibuat!: $nama_tabel \n";
+    echo "Seeder dibuat!: $nama_tabel <br>";
 } else {
-    echo "Error: saat membuat seeder $nama_tabel\n";
+    echo "Error: saat membuat seeder $nama_tabel<br>";
 }

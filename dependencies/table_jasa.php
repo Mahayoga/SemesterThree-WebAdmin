@@ -13,21 +13,21 @@ $sql = "
 ";
 
 if ($koneksi->query($sql) === true) {
-    echo "Tabel dibuat!: $nama_tabel \n";
+    echo "Tabel dibuat!: $nama_tabel <br>";
 } else {
-    echo "Error: saat membuat tabel $nama_tabel\n";
+    echo "Error: saat membuat tabel $nama_tabel<br>";
 }
 
 $sql = "
     INSERT INTO `jasa` (`id_jasa`, `nama_jasa`, `harga_jasa`) VALUES
-    (1, 'Cukur Rambut', '50000'),
-    (2, 'Cukur + Styling', '75000'),
-    (3, 'Cukur Anak', '35000');
-
+    (1, 'Haircut 1 - anak anak', '15000'),
+    (2, 'Haircut 2 - dewasa', '20000'),
+    (3, 'Paket 1 - haircut+hairwash', '25000'),
+    (4, 'Paket 2 - haircut+hairwash+styling pomade/vitamin', '30000');
 ";
 
 if ($koneksi->query($sql) === true) {
-    echo "Seeder dibuat!: $nama_tabel \n";
+    echo "Seeder dibuat!: $nama_tabel <br>";
 } else {
-    echo "Error: saat membuat seeder $nama_tabel\n";
+    echo "Error: saat membuat seeder $nama_tabel<br>";
 }
