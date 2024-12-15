@@ -4,8 +4,8 @@ include "../config/connection.php";
 $id = $_POST['id'];
 
 try {
-    $stmt = $koneksi->prepare("DELETE FROM produk WHERE id_produk = ?");
-    $stmt->bind_param("i", $id);
+    $stmt = $koneksi->prepare("DELETE FROM jasa WHERE id_jasa = ?");
+    $stmt->bind_param("s", $id);
     $stmt->execute();
     echo json_encode(["status" => "success"]);
 } catch (Exception $e) {

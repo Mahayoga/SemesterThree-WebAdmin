@@ -5,7 +5,7 @@
           <h6><strong>Data Produk</strong></h6>
           <div class="container mt-4">
             <div>
-              <button type="button" class="btn btn-success btn-sm">Tambah</button>
+              <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambah">Tambah</button>
             </div>
           </div>
           <table class="table table-striped table-bordered mt-4" style="font-size: 12px; width: 100%;">
@@ -26,12 +26,13 @@
     </div>
   </div>
 </div>
- <!-- Modal Detail -->
+
+<!-- Modal Detail -->
 <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pengguna</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Produk</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -44,7 +45,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-        <!-- <button type="button" class="btn btn-primary"></button> -->
       </div>
     </div>
   </div>
@@ -60,30 +60,29 @@
       </div>
       <div class="modal-body">
         <div class="form-body">
-          <label for="">Nama Produk</label>
-          <input type="text" id="nama_produk_edit" class="form-control">
+          <label for="nama_produk_tambah">Nama Produk</label>
+          <input type="text" id="nama_produk_tambah" class="form-control">
         </div>
         <div class="form-body">
-          <label for="">Deskripsi Produk</label>
-          <input type="text" id="deskripsi_produk_edit" class="form-control">
+          <label for="deskripsi_produk_tambah">Deskripsi Produk</label>
+          <input type="text" id="deskripsi_produk_tambah" class="form-control">
         </div>
         <div class="form-body">
-          <label for="">Harga Beli</label>
-          <input type="number" id="harga_beli_produk_edit" class="form-control">
+          <label for="harga_beli_produk_tambah">Harga Beli</label>
+          <input type="number" id="harga_beli_produk_tambah" class="form-control">
         </div>
         <div class="form-body">
-          <label for="">Harga Jual</label>
-          <input type="number" id="harga_jual_produk_edit" class="form-control">
+          <label for="harga_jual_produk_tambah">Harga Jual</label>
+          <input type="number" id="harga_jual_produk_tambah" class="form-control">
         </div>
         <div class="form-body">
-          <label for="">Stok</label>
-          <input type="number" id="stok_produk_edit" class="form-control">
+          <label for="stok_produk_tambah">Stok</label>
+          <input type="number" id="stok_produk_tambah" class="form-control">
         </div>
       </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-          <button type="button" class="btn btn-primary" id="btn-edit-simpan" onclick="simpanDataProduk()">Simpan</button>
-        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        <button type="button" class="btn btn-primary" onclick="simpanDataProduk()">Simpan</button>
       </div>
     </div>
   </div>
@@ -99,29 +98,29 @@
       </div>
       <div class="modal-body">
         <div class="form-body">
-          <label for="">Nama Produk</label>
-          <input type="text" name="nama-produk-edit" id="nama_produk_edit" class="form-control">
+          <label for="nama_produk_edit">Nama Produk</label>
+          <input type="text" id="nama_produk_edit" class="form-control">
         </div>
         <div class="form-body">
-          <label for="">Deskripsi Produk</label>
-          <input type="text" name="deskripsi-produk-edit" id="deskripsi_produk_edit" class="form-control">
+          <label for="deskripsi_produk_edit">Deskripsi Produk</label>
+          <input type="text" id="deskripsi_produk_edit" class="form-control">
         </div>
         <div class="form-body">
-          <label for="">Harga Beli</label>
-          <input type="number" name="harga-beli-produk-edit" id="harga_beli_produk_edit" class="form-control">
+          <label for="harga_beli_produk_edit">Harga Beli</label>
+          <input type="number" id="harga_beli_produk_edit" class="form-control">
         </div>
         <div class="form-body">
-          <label for="">Harga Jual</label>
-          <input type="number" name="harga-jual-produk-edit" id="harga_jual_produk_edit" class="form-control">
+          <label for="harga_jual_produk_edit">Harga Jual</label>
+          <input type="number" id="harga_jual_produk_edit" class="form-control">
         </div>
         <div class="form-body">
-          <label for="">Stok</label>
-          <input type="number" name="stok-produk-edit" id="stok_produk_edit" class="form-control">
+          <label for="stok_produk_edit">Stok</label>
+          <input type="number" id="stok_produk_edit" class="form-control">
         </div>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-      <button type="button" class="btn btn-primary" id="btn-edit-simpan" onclick="simpanEditData()">Simpan</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-primary" onclick="simpanEditData()">Simpan</button>
       </div>
     </div>
   </div>
@@ -136,11 +135,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Apakah anda akan menghapus user ini dengan nama <b id="nama_produk_hapus"></b> ?
+        Apakah anda akan menghapus produk ini dengan nama <b id="nama_produk_hapus"></b>?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-danger" id="btn-edit-simpan" onclick="hapusData()">Hapus</button>
+        <button type="button" class="btn btn-danger" onclick="hapusData()">Hapus</button>
       </div>
     </div>
   </div>
@@ -149,60 +148,54 @@
 <script>
   let idEdit = null;
   let idHapus = null;
+
   function ambilData() {
     let xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function() {
-      if(this.readyState == 4 && this.status == 200) {
+      if (this.readyState === 4 && this.status === 200) {
         let data = JSON.parse(this.responseText);
         let tbody = document.getElementById("tbody");
         let i = 1;
-        if(data.status == "success") {
+        if (data.status === "success") {
           tbody.innerHTML = "";
           data.data.forEach(element => {
             tbody.innerHTML += `
               <tr>
-                <td class="fs-6">${i}</td>
+                <td class="fs-6">${element.id_produk}</td>
                 <td class="fs-6">${element.nama_produk}</td>
                 <td class="fs-6">${element.harga_beli}</td>
                 <td class="fs-6">${element.harga_jual}</td>
-                <td class="fs-6">
-                  <button type="button"
-                   data-id_produk="${element.id_produk}"
-                   data-nama_produk="${element.nama_produk}"
-                   data-deskripsi_produk="${element.deskripsi_produk}"
-                   data-harga_beli="${element.harga_beli}"
-                   data-harga_jual="${element.harga_jual}"
-                   data-stok="${element.stok}"
-                   onclick="setDetailModal(this)" class="btn btn-info p-2" data-bs-toggle="modal" data-bs-target="#modalDetail">
-                    Detail
-                  </button>
-                  <button 
-                   data-id_produk="${element.id_produk}"
-                   data-nama_produk="${element.nama_produk}"
-                   data-deskripsi_produk="${element.deskripsi_produk}"
-                   data-harga_beli"${element.harga_beli}"
-                   data-harga_jual="${element.harga_jual}"
-                   data-stok="${element.stok}"
-                  type="button" onclick="setEditModal(this)" class="btn btn-secondary p-2" data-bs-toggle="modal" data-bs-target="#modalEdit">
-                    Edit
-                  </button>
-                  <button 
-                   data-id_produk="${element.id_produk}"
-                  type="button" onclick="setHapusModal(this)" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#modalHapus">
-                    Hapus
-                  </button>
+                <td>
+                  <button class="btn btn-info btn-sm" 
+                          data-id_produk="${element.id_produk}" 
+                          data-nama_produk="${element.nama_produk}" 
+                          data-deskripsi_produk="${element.deskripsi_produk}" 
+                          data-harga_beli="${element.harga_beli}" 
+                          data-harga_jual="${element.harga_jual}" 
+                          data-stok="${element.stok}" 
+                          onclick="setDetailModal(this)" 
+                          data-bs-toggle="modal" data-bs-target="#modalDetail">Detail</button>
+                  <button class="btn btn-secondary btn-sm" 
+                          data-id_produk="${element.id_produk}" 
+                          data-nama_produk="${element.nama_produk}" 
+                          data-deskripsi_produk="${element.deskripsi_produk}" 
+                          data-harga_beli="${element.harga_beli}" 
+                          data-harga_jual="${element.harga_jual}" 
+                          data-stok="${element.stok}" 
+                          onclick="setEditModal(this)" 
+                          data-bs-toggle="modal" data-bs-target="#modalEdit">Edit</button>
+                  <button class="btn btn-danger btn-sm" 
+                          data-id_produk="${element.id_produk}" 
+                          onclick="setHapusModal(this)" 
+                          data-bs-toggle="modal" data-bs-target="#modalHapus">Hapus</button>
                 </td>
               </tr>
             `;
             i++;
           });
-        } else if(data.status == "error") {
-          tbody.innerHTML = `
-            <tr>
-              <td colspan="7" class="text-center">Tidak ada data pengguna</td>
-            </tr>
-          `;
+        } else {
+          tbody.innerHTML = `<tr><td colspan="5" class="text-center">Tidak ada data produk</td></tr>`;
         }
       }
     };
@@ -212,37 +205,35 @@
   }
 
   function setDetailModal(btnData) {
-    let id_produk = btnData.getAttribute('data-id_produk');
-    let nama_produk = btnData.getAttribute('data-nama_produk');
-    let deskripsi_produk = btnData.getAttribute('data-deskripsi_produk');
-    let harga_beli_produk = btnData.getAttribute('data-harga_beli');
-    let harga_jual_produk = btnData.getAttribute('data-harga_jual');
-    let stok_produk = btnData.getAttribute('data-stok');
-    document.getElementById("id_produk_detail").innerHTML = id_produk;
-    document.getElementById("nama_produk_detail").innerHTML = nama_produk;
-    document.getElementById("deskripsi_produk_detail").innerHTML = deskripsi_produk;
-    document.getElementById("harga_beli_produk_detail").innerHTML = harga_beli_produk;
-    document.getElementById("harga_jual_produk_detail").innerHTML = harga_jual_produk;
-    document.getElementById("stok_produk_detail").innerHTML = stok_produk;
+    document.getElementById("id_produk_detail").innerText = btnData.getAttribute('data-id_produk');
+    document.getElementById("nama_produk_detail").innerText = btnData.getAttribute('data-nama_produk');
+    document.getElementById("deskripsi_produk_detail").innerText = btnData.getAttribute('data-deskripsi_produk');
+    document.getElementById("harga_beli_produk_detail").innerText = btnData.getAttribute('data-harga_beli');
+    document.getElementById("harga_jual_produk_detail").innerText = btnData.getAttribute('data-harga_jual');
+    document.getElementById("stok_produk_detail").innerText = btnData.getAttribute('data-stok');
   }
 
   function setEditModal(btnData) {
-    let id_produk = btnData.getAttribute('data-id_produk');
-    let nama_produk = btnData.getAttribute('data-nama_produk');
-    let deskripsi_produk = btnData.getAttribute('data-deskripsi_produk');
-    let harga_beli_produk = btnData.getAttribute('data-harga_beli_produk');
-    let harga_jual_produk = btnData.getAttribute('data-harga_jual_produk');
-    let stok_produk = btnData.getAttribute('data-stok_produk');
-    document.getElementById("nama_produk_edit").value = nama_produk;
-    document.getElementById("deskripsi_produk_edit").value = deskripsi_produk;
-    document.getElementById("harga_beli_produk_edit").value = harga_beli_produk_;
-    document.getElementById("harga_jual_produk_edit").value = harga_jual_produk;
-    document.getElementById("stok_produk_detail").value = stok_produk;
+  // Ambil ID produk untuk diedit
+  let id = btnData.getAttribute('data-id_produk');
+  let nama_produk = btnData.getAttribute('data-nama_produk');
+  let deskripsi_produk = btnData.getAttribute('data-deskripsi_produk');
+  let harga_beli = btnData.getAttribute('data-harga_beli');
+  let harga_jual = btnData.getAttribute('data-harga_jual');
+  let stok = btnData.getAttribute('data-stok');
 
-    idEdit = id_produk;
-  }
+  // Set nilai input form berdasarkan data yang dikirim
+  document.getElementById("nama_produk_edit").value = nama_produk;
+  document.getElementById("deskripsi_produk_edit").value = deskripsi_produk;
+  document.getElementById("harga_beli_produk_edit").value = harga_beli;
+  document.getElementById("harga_jual_produk_edit").value = harga_jual;
+  document.getElementById("stok_produk_edit").value = stok;
 
-  function simpanDataProduk() {
+  // Menyimpan id untuk keperluan edit
+  idEdit = id;
+}
+
+function simpanDataProduk() {
     let xhttp = new XMLHttpRequest();
     let formData = new FormData();
 
@@ -250,7 +241,7 @@
     let deskripsi_produk = document.getElementById("deskripsi_produk_tambah").value;
     let harga_beli = document.getElementById("harga_beli_produk_tambah").value;
     let harga_jual = document.getElementById("harga_jual_produk_tambah").value;
-    let stok = document.getElementById("stok_produk_tamabh").value;
+    let stok = document.getElementById("stok_produk_tambah").value;
 
     formData.append("nama_produk", nama_produk);
     formData.append("deskripsi_produk", deskripsi_produk);
@@ -259,30 +250,33 @@
     formData.append("stok", stok);
 
     xhttp.onreadystatechange = function() {
-      if(this.readyState == 4 && this.status == 200) {
-        let data = JSON.parse(this.responseText);
-        if(data.status == "success") {
-          alert("Tambah data berhasil!");
-          ambilData();
-          tutupModal();
+        if (this.readyState == 4 && this.status == 200) {
+            let data = JSON.parse(this.responseText);
+            if (data.status == "success") {
+                alert("Tambah data berhasil!");
+                ambilData();
+                tutupModal();
+            } else {
+                alert("Gagal menambah data!");
+            }
         }
-      }
     };
 
     xhttp.open('POST', 'crud/simpan_data_produk.php', true);
     xhttp.send(formData);
-  }
-  
-  function simpanEditData() {
-    let formData = new FormData();
+}
+
+function simpanEditData() {
     let xhttp = new XMLHttpRequest();
-    
+    let formData = new FormData();
+
     let nama_produk = document.getElementById("nama_produk_edit").value;
     let deskripsi_produk = document.getElementById("deskripsi_produk_edit").value;
     let harga_beli = document.getElementById("harga_beli_produk_edit").value;
     let harga_jual = document.getElementById("harga_jual_produk_edit").value;
     let stok = document.getElementById("stok_produk_edit").value;
 
+    formData.append("id", idEdit);
     formData.append("nama_produk", nama_produk);
     formData.append("deskripsi_produk", deskripsi_produk);
     formData.append("harga_beli", harga_beli);
@@ -290,19 +284,21 @@
     formData.append("stok", stok);
 
     xhttp.onreadystatechange = function() {
-      if(this.readyState == 4 && this.status == 200) {
-        let response = JSON.parse(this.responseText);
-        if(response.status == "success") {
-          alert("Simpan berhasil");
-          ambilData();
-          tutupModal();
+        if (this.readyState == 4 && this.status == 200) {
+            let response = JSON.parse(this.responseText);
+            if (response.status == "success") {
+                alert("Simpan berhasil!");
+                ambilData();
+                tutupModal();
+            } else {
+                alert("Gagal menyimpan perubahan!");
+            }
         }
-      }
-    }
+    };
 
     xhttp.open("POST", "crud/simpan_edit_produk.php", true);
     xhttp.send(formData);
-  }
+}
   
   function setHapusModal(btnData) {
     let xhttp = new XMLHttpRequest();
@@ -341,7 +337,7 @@
       }
     };
 
-    xhttp.open("POST", "crud/hapus_data_produk.php", true);
+    xhttp.open("POST", "crud/hapus_dataproduk.php", true);
     xhttp.send(formData);
   }
 
