@@ -337,7 +337,7 @@ function simpanEditData() {
       }
     };
 
-    xhttp.open("POST", "crud/hapus_data_produk.php", true);
+    xhttp.open("POST", "crud/hapus_dataproduk.php", true);
     xhttp.send(formData);
   }
 

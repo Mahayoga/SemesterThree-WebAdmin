@@ -5,7 +5,7 @@ $id = $_POST['id'];
 
 try {
     $stmt = $koneksi->prepare("DELETE FROM produk WHERE id_produk = ?");
-    $stmt->bind_param("s", $id);
+    $stmt->bind_param("i", $id);
     $stmt->execute();
     echo json_encode(["status" => "success"]);
 } catch (Exception $e) {
