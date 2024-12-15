@@ -9,12 +9,14 @@ $sql = [
     "ALTER TABLE `produk` ADD PRIMARY KEY (`id_produk`);",
     "ALTER TABLE `transaksi` ADD PRIMARY KEY (`id_transaksi`);",
     "ALTER TABLE `users` ADD PRIMARY KEY (`id_user`), ADD UNIQUE KEY `email` (`email`);",
+    "ALTER TABLE `detail_transaksi` ADD PRIMARY KEY (`id_detail`);",
     "ALTER TABLE `booking` MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT;",
     "ALTER TABLE `jasa` MODIFY `id_jasa` int(11) NOT NULL AUTO_INCREMENT;",
     "ALTER TABLE `karyawan` MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT;",
     "ALTER TABLE `produk` MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT;",
     "ALTER TABLE `transaksi` MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT;",
     "ALTER TABLE `users` MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;",
+    "ALTER TABLE `detail_transaksi` MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;",
 ];
 
 foreach($sql as $item) {
