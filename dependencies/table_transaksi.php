@@ -26,7 +26,9 @@ $sql = "
     INSERT INTO `transaksi` (`id_transaksi`, `total`, `bayar`, `kembalian`, `method_pembayaran`, `id_user`, `id_karyawan`) VALUES
     (1, 125000, 150000, 25000, 'cash', 3, 1),
     (2, 50000, 50000, 0, 'ovo', 4, 2),
-    (3, 75000, 75000, 0, 'dana', 3, 1);
+    (3, 75000, 75000, 0, 'dana', 3, 1),
+    (4, 35000, 50000, 15000, 'cash', 2, 1),
+    (5, 100000, 100000, 0, 'dana', 5, 1);
 ";
 
 if ($koneksi->query($sql) === true) {
