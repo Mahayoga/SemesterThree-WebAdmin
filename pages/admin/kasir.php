@@ -58,44 +58,43 @@
             </div>
             <div class="row mb-3">
               <!-- Service Type (Jasa or Produk) -->
-              <div class="col-md-6">
-                <label for="service-type" class="form-label">Jenis Item</label>
-                <select class="form-select" id="service-type">
-                  <option value="jasa">Jasa</option>
-                  <option value="produk">Produk</option>
-                </select>
-              </div>
-            </div>
-            <!-- Jasa Section -->
-            <div class="row mb-3" id="jasa-section">
-              <div class="col-md-6">
-                <label for="service" class="form-label" id="service-label">Pilih Jasa</label>
-                <select class="form-select" id="service">
-                  <option value="" disabled selected>Select Jasa</option>
-                  <?php 
-                    $sql = "SELECT * FROM jasa";
-                    $result = $koneksi->query($sql);
-                    while($row = $result->fetch_array()) {
-                  ?>
-                  <option value="<?= $row['id_jasa']?>" data-price="<?= $row['harga_jasa']?>"><?= $row['nama_jasa']?></option>
-                  <?php } ?>
-                </select>
-              </div>
-            </div>
-            <!-- Produk Section -->
-            <div class="row mb-3" id="produk-section" style="display: none;">
-              <div class="col-md-6">
-                <label for="product" class="form-label" id="product-label">Pilih Produk</label>
-                <select class="form-select" id="product">
-                  <option value="" disabled selected>Select Produk</option>
-                  <?php 
-                    $sql = "SELECT * FROM produk";
-                    $result = $koneksi->query($sql);
-                    while($row = $result->fetch_array()) {
-                  ?>
-                  <option value="<?= $row['id_produk']?>" data-price="<?= $row['harga_jual']?>"><?= $row['nama_produk']?></option>
-                  <?php } ?>
-                </select>
+<!-- Jenis Item -->
+<div class="col-md-6">
+          <label for="service-type" class="form-label">Jenis Item</label>
+          <select class="form-select" id="service-type">
+            <option value="jasa">Jasa</option>
+            <option value="produk">Produk</option>
+          </select>
+        </div>
+
+        <!-- Pilihan Jasa -->
+        <div class="col-md-6" id="jasa-section">
+          <label for="service" class="form-label" id="service-label">Pilih Jasa</label>
+          <select class="form-select" id="service">
+            <option value="" disabled selected>Pilih Jasa</option>
+            <?php 
+              $sql = "SELECT * FROM jasa";
+              $result = $koneksi->query($sql);
+              while($row = $result->fetch_array()) {
+            ?>
+            <option value="<?= $row['id_jasa']?>" data-price="<?= $row['harga_jasa']?>"><?= $row['nama_jasa']?></option>
+            <?php } ?>
+          </select>
+        </div>
+
+        <!-- Pilihan Produk -->
+        <div class="col-md-6" id="produk-section" style="display: none;">
+          <label for="product" class="form-label" id="product-label">Pilih Produk</label>
+          <select class="form-select" id="product">
+            <option value="" disabled selected>Pilih Produk</option>
+            <?php 
+              $sql = "SELECT * FROM produk";
+              $result = $koneksi->query($sql);
+              while($row = $result->fetch_array()) {
+            ?>
+            <option value="<?= $row['id_produk']?>" data-price="<?= $row['harga_jual']?>"><?= $row['nama_produk']?></option>
+            <?php } ?>
+          </select>
               </div>
             </div>
             <div class="row mb-3">
@@ -234,25 +233,19 @@
 <script>
   // Toggle between Jasa and Produk sections based on service type
   document.getElementById('service-type').addEventListener('change', function() {
-    const serviceType = this.value;
-    const jasaSection = document.getElementById('jasa-section');
-    const produkSection = document.getElementById('produk-section');
-    const serviceLabel = document.getElementById('service-label');
-    const productLabel = document.getElementById('product-label');
+      const serviceType = this.value;
+      const jasaSection = document.getElementById('jasa-section');
+      const produkSection = document.getElementById('produk-section');
 
-    // Show or hide sections based on selected service type
-    if (serviceType === 'jasa') {
-      jasaSection.style.display = 'block';
-      produkSection.style.display = 'none';
-      serviceLabel.textContent = 'Jasa';
-      productLabel.textContent = 'Produk';
-    } else if (serviceType === 'produk') {
-      jasaSection.style.display = 'none';
-      produkSection.style.display = 'block';
-      serviceLabel.textContent = 'Produk';
-      productLabel.textContent = 'Produk';
-    }
-  });
+      // Tampilkan atau sembunyikan berdasarkan pilihan
+      if (serviceType === 'jasa') {
+        jasaSection.style.display = 'block';
+        produkSection.style.display = 'none';
+      } else if (serviceType === 'produk') {
+        jasaSection.style.display = 'none';
+        produkSection.style.display = 'block';
+      }
+    });
 
   // Update the item list and price based on the selected product or service
   document.getElementById('service').addEventListener('change', function() {
@@ -275,30 +268,43 @@
 
   // Add item functionality
   document.getElementById('add-item').addEventListener('click', function() {
-    const serviceSelect = document.getElementById('service');
-    const serviceName = serviceSelect.options[serviceSelect.selectedIndex].textContent;
-    const price = parseFloat(document.getElementById('price').value) || 0;
+    const serviceType = document.getElementById('service-type').value;
+    let itemName = '';
+    let price = 0;
+    
+    if (serviceType === 'jasa') {
+        const serviceSelect = document.getElementById('service');
+        itemName = serviceSelect.options[serviceSelect.selectedIndex]?.textContent || '';
+        price = parseFloat(serviceSelect.options[serviceSelect.selectedIndex]?.dataset.price) || 0;
+    } else if (serviceType === 'produk') {
+        const productSelect = document.getElementById('product');
+        itemName = productSelect.options[productSelect.selectedIndex]?.textContent || '';
+        price = parseFloat(productSelect.options[productSelect.selectedIndex]?.dataset.price) || 0;
+    }
+
     const qty = parseInt(document.getElementById('qty').value) || 1;
 
-    if (serviceName && price > 0 && qty > 0) {
-      const itemList = document.getElementById('item-list');
-      const newRow = document.createElement('tr');
+    // Validasi data sebelum menambahkan ke tabel
+    if (itemName && price > 0 && qty > 0) {
+        const itemList = document.getElementById('item-list');
+        const newRow = document.createElement('tr');
 
-      newRow.innerHTML = `
-                <td>#</td>
-                <td>${serviceName}</td>
-                <td>${price.toFixed(2)}</td>
-                <td>${qty}</td>
-                <td>${(price * qty).toFixed(2)}</td>
-                <td><button class='btn btn-danger btn-sm remove-item'>Remove</button></td>
-            `;
+        newRow.innerHTML = `
+            <td>#</td>
+            <td>${itemName}</td>
+            <td>${price.toFixed(2)}</td>
+            <td>${qty}</td>
+            <td>${(price * qty).toFixed(2)}</td>
+            <td><button class='btn btn-danger btn-sm remove-item'>Remove</button></td>
+        `;
 
-      itemList.appendChild(newRow);
-      document.getElementById('no-item').style.display = 'none';
+        itemList.appendChild(newRow);
+        document.getElementById('no-item').style.display = 'none';
     } else {
-      alert("Please select a service, enter a valid price and quantity.");
+        alert("Please select a valid item, price, and quantity.");
     }
-  });
+});
+
 
   // Remove item functionality
   document.getElementById('item-list').addEventListener('click', function(event) {
@@ -338,7 +344,76 @@
     const change = cash - grandTotal;
     document.getElementById('change').value = change.toFixed(2);
   }
-</script>
+  // Tambahkan event listener untuk cash input
+  document.getElementById('cash').addEventListener('input', function() {
+    updateSummary();
+  });
+  // struk
+  document.getElementById('process-payment').addEventListener('click', function() {
+    // Gather transaction details
+    const date = document.getElementById('date').value;
+    const cashier = document.getElementById('cashier').value;
+    const customerStatus = document.getElementById('customer-status').value;
+    const customerName = customerStatus === 'registered' ? document.getElementById('customer').selectedOptions[0].text : 
+                          customerStatus === 'not_registered' ? document.getElementById('new-customer').value : 
+                          document.getElementById('recorded-customer-list').selectedOptions[0].text;
+    
+    const items = [];
+    const rows = document.querySelectorAll('#item-list tr');
+    rows.forEach(function(row) {
+        if (row.id !== 'no-item') {
+            const service = row.cells[1].textContent;
+            const price = row.cells[2].textContent;
+            const qty = row.cells[3].textContent;
+            const total = row.cells[4].textContent;
+            items.push({ service, price, qty, total });
+        }
+    });
 
+    const subTotal = document.getElementById('sub-total').value;
+    const discount = document.getElementById('discount').value;
+    const grandTotal = document.getElementById('grand-total').value;
+    const paymentMethod = document.getElementById('payment-method').value;
+    const cash = document.getElementById('cash').value;
+    const qris = document.getElementById('qris').value;
+    const change = document.getElementById('change').value;
+    const note = document.getElementById('note').value;
+
+    // Generate the receipt content
+    let receiptContent = `
+    <h3 style="text-align: center;">Receipt</h3>
+    <p><strong>Date:</strong> ${date}</p>
+    <p><strong>Cashier:</strong> ${cashier}</p>
+    <p><strong>Customer:</strong> ${customerName}</p>
+    <p><strong>Status:</strong> ${customerStatus}</p>
+    <hr>
+    <h4>Items:</h4>`;
+
+    items.forEach(item => {
+        receiptContent += `
+        <p><strong>Service:</strong> ${item.service}</p>
+        <p><strong>Price:</strong> ${item.price}</p>
+        <p><strong>Qty:</strong> ${item.qty}</p>
+        <p><strong>Total:</strong> ${item.total}</p>
+        <hr>`;
+    });
+
+    receiptContent += `
+    <p><strong>Sub Total:</strong> ${subTotal}</p>
+    <p><strong>Discount:</strong> ${discount}</p>
+    <p><strong>Grand Total:</strong> ${grandTotal}</p>
+    <p><strong>Payment Method:</strong> ${paymentMethod}</p>
+    ${paymentMethod === 'cash' ? `<p><strong>Cash:</strong> ${cash}</p>` : ''}
+    ${paymentMethod === 'qris' ? `<p><strong>QRIS:</strong> ${qris}</p>` : ''}
+    <p><strong>Change:</strong> ${change}</p>
+    <p><strong>Note:</strong> ${note}</p>
+    `;
+
+    // Open a new window for the receipt and print it
+    const receiptWindow = window.open('', '', 'width=600,height=600');
+    receiptWindow.document.write(receiptContent);
+    receiptWindow.document.close();
+    receiptWindow.print(); 
+});
+</script>
 <?php
-//
