@@ -412,10 +412,8 @@
     // Open a new window for the receipt and print it
     const receiptWindow = window.open('', '', 'width=600,height=600');
     receiptWindow.document.write(receiptContent);
-    receiptWindow.document.close(); // Needed for the document to be fully loaded
-    receiptWindow.print(); // Trigger print dialog
+    receiptWindow.document.close();
+    receiptWindow.print(); 
 });
 </script>
-
 <?php
-//
