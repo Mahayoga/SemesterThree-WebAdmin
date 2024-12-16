@@ -555,8 +555,13 @@
 
       xhttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
-          console.log(this.responseText);
+          let data = JSON.parse(this.responseText);
           ambilData();
+          Swal.fire({
+            title: data.title,
+            text: data.message,
+            icon: data.status
+          });
         }
       };
 
@@ -574,8 +579,13 @@
 
       xhttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
-          console.log(this.responseText);
+          let data = JSON.parse(this.responseText);
           ambilData();
+          Swal.fire({
+            title: data.title,
+            text: data.message,
+            icon: data.status
+          });
         }
       };
 
