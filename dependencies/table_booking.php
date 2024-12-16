@@ -7,7 +7,8 @@ $sql = "
     `id_booking` int(11) NOT NULL,
     `id_user` int(11) NOT NULL,
     `id_jasa` int(11) NOT NULL,
-    `tgl_booking` date NOT NULL,
+    `tgl_booking` timestamp NOT NULL DEFAULT current_timestamp(),
+    `bukti_pembayaran` longblob NULL,
     `status` enum('pending','confirmed','canceled','complete') NOT NULL,
     `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
     `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()

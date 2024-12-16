@@ -17,6 +17,9 @@
 
   <link href="assets/user/css/main.css" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/img/logobaru.png">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <title>GreenHead</title>
 </head>
 
@@ -51,7 +54,29 @@
             </ul>
           </li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="?hal=login">Login</a></li>
+          <?php
+            if(@$_SESSION['isLogin']) {
+          ?>
+          <li>
+            <p id="data-user" class="d-none" data-id_user="<?= @$_SESSION['id_user']?>"></p>
+            <a href=""><?= @$_SESSION['name']?></a>
+          </li>
+          <li>
+            <form method="POST">
+              <button type="submit" class="btn btn-danger mx-4" name="btn-logout">Logout</button>
+            </form>
+          </li>
+          <?php
+            } else {
+          ?>
+          <li><a id="data-user" href="?hal=login">Login</a></li>
+          <?php 
+            } 
+            if(isset($_POST['btn-logout'])) {
+              session_destroy();
+              header('Location: ?hal=login');
+            }
+          ?>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -156,120 +181,89 @@
         <h2>Paket Kami</h2>
       </div>
 
-      <div class="container">
-        <div class="row gy-4 justify-content-center">
-          <div class="row justify-content-center mb-4">
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-emoji-grin"></i>
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Anak-Anak</h3>
-              </a>
-              <p>Khusus Untuk Kelas 1 - 6 SD</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-emoji-sunglasses"></i>
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Dewasa</h3>
-              </a>
-              <p>SMP - Lanjut Usia</p>
-            </div>
-          </div><!-- End Service Item --></div>
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div class="service-item position-relative">
-                <div class="icon">
-                  <i class="bi bi-scissors"></i>
+      <div class="container-fluid">
+        <div class="row gy-4">
+          <div class="col-md-6">
+            <div class="row mb-4 p-2">
+              <div class="col-lg-6 col-md-6 my-3" onclick="checkBooking(1)" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-item position-relative item-booking">
+                  <div class="icon">
+                    <i class="bi bi-emoji-grin"></i>
+                  </div>
+                  <h3>Anak-Anak</h3>
+                  <p>Khusus Untuk Kelas 1 - 6 SD</p>
                 </div>
-                <a href="service-details.html" class="stretched-link">
-                  <h3>Paket 1</h3>
-                </a>
-                <p>Potong + Keramas</p>
               </div>
-            </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-scissors"></i>
+              <div class="col-lg-6 col-md-6 my-3" onclick="checkBooking(2)" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-item position-relative item-booking">
+                  <div class="icon">
+                    <i class="bi bi-emoji-sunglasses"></i>
+                  </div>
+                  <h3>Dewasa</h3>
+                  <p>SMP - Lanjut Usia</p>
+                </div>
               </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Paket 2</h3>
-              </a>
-              <p>Potong, Keramas, Styling Pomade/Vitamin</p>
+              <div class="col-lg-6 col-md-6 my-3" onclick="checkBooking(3)" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-item position-relative item-booking">
+                  <div class="icon">
+                    <i class="bi bi-emoji-grin"></i>
+                  </div>
+                  <h3>Anak-Anak</h3>
+                  <p>Khusus Untuk Kelas 1 - 6 SD</p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 my-3" onclick="checkBooking(4)" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-item position-relative item-booking">
+                  <div class="icon">
+                    <i class="bi bi-emoji-sunglasses"></i>
+                  </div>
+                  <h3>Dewasa</h3>
+                  <p>SMP - Lanjut Usia</p>
+                </div>
+              </div>
             </div>
           </div>
+          <div class="col-md-6">
+            <div class="row mb-4 h-100 p-2 align-items-center">
+              <div class="col-lg-12 col-md-12">
+                <div class="card rounded h-50">
+                  <div class="card-body d-flex justify-content-center flex-column">
+                    <input type="date" name="booking-date" id="booking-date" class="form-control mb-4" placeholder="Pilih tanggal">
+                    <button type="button" class="btn btn-info text-white mb-4" onclick="checkDate()">Check Tanggal</button>
+                    <button type="button" class="btn btn-danger text-white" onclick="addBooking()">Booking Sekarang</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php
+            if(@$_SESSION['isLogin']) {
+          ?>
+          <div class="col-md-12">
+            <h4 class="text-center my-4">List Booking Kamu</h4>
+            <table class="table">
+              <thead>
+                <th>No</th>
+                <th>Nama Jasa</th>
+                <th>Harga Jasa</th>
+                <th>Tanggal Booking (Real)</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </thead>
+              <tbody id="tbody">
+              <tr>
+                <td colspan="6" class="text-center bg-light">Belum ada data</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <?php } ?>
         </div>
-      </div>
-    </div>
-
-    </section>
-    <section id="contact" class="contact section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Kontak Kami</h2>
-      </div>
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="col-lg-4">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center">
-              <i class="bi bi-geo-alt"></i>
-              <h3>Alamat</h3>
-              <a href="https://maps.apple.com/?address=gang%20mastrip%203%20No.%2066,%20Jember,%20East%20Java%2068124,%20Indonesia&auid=1849573525528465069&ll=-8.161000,113.725347&lsp=9902&q=Greenhead%20Barbershop&_ext=CjEKBAgEEEUKBAgFEAMKBAgGEGcKBAgKEAAKBAhSEAEKBAhVEA8KBAhZEAIKBQjBARABEiYpvpsTIK9UIMAxbTZWYh5uXEA5eC7nrRVQIMBB8kOlEbNuXEBQBA%3D%3D"><p>Lihat Lokasi</p></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center info-item-borders">
-              <i class="bi bi-telephone"></i>
-              <h3>No Telp</h3>
-              <a href="tel:+6285785089258"><p>Hubungi Kami Melalui No Telepon</p></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center">
-              <i class="bi bi-envelope"></i>
-              <h3>Email</h3>
-              <a href="mailto:greenhead@gmail.com"><p>Hubungi Kami Melalui Email</p></a>
-            </div>
-          </div>
-        </div>
-
-        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
-          <div class="row gy-4">
-            <div class="col-md-6">
-              <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-            </div>
-            <div class="col-md-6 ">
-              <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-            </div>
-            <div class="col-md-12">
-              <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-            </div>
-            <div class="col-md-12">
-              <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-            </div>
-            <div class="col-md-12 text-center">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Sudah Terkirim, Terimakasih!</div>
-              <button type="submit">Kirim Pesan</button>
-            </div>
-          </div>
-        </form>
       </div>
     </section>
   </main>
 
-  <footer id="footer" class="footer light-background">
+  <footer id="footer" class="footer bg-white">
     <div class="container">
       <h3 class="sitename">Green Head</h3>
       <div class="social-links d-flex justify-content-center">
@@ -296,6 +290,217 @@
   <script src="assets/user/vendor/aos/aos.js"></script>
 
   <script src="assets/user/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+  <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Bookings</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    let dateTime = null;
+    let idJasa = null;
+    flatpickr("#booking-date", {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      minDate: "today",
+      maxDate: new Date().fp_incr(3),
+      minTime: "10:00",
+      maxTime: "21:00",
+      onChange: function(selectedDates, dateStr, instance) {
+        dateTime = selectedDates[0];
+      }
+    });
+    function checkDate() {
+      if(document.getElementById("data-user").getAttribute("data-id_user") == null) {
+        Swal.fire({
+          title: "Kesalahan",
+          text: "Silahkan lakukan login terlebih dahulu",
+          icon: "error"
+        });
+        return;
+      }
+      if(idJasa == null) {
+        Swal.fire({
+          title: "Kesalahan",
+          text: "Silahkan pilih paket terlebih dahulu",
+          icon: "error"
+        });
+        return;
+      } else if(dateTime == null) {
+        Swal.fire({
+          title: "Kesalahan",
+          text: "Silahkan pilih tanggal dan jam terlebih dahulu",
+          icon: "error"
+        });
+      }
+      let theDate = dateTime.getFullYear() + "-" + (dateTime.getMonth() + 1) + "-" + dateTime.getDate() + " " + dateTime.getHours();
+      let xhttp = new XMLHttpRequest();
+      let formData = new FormData();
+
+      formData.append("date", theDate);
+
+      xhttp.onreadystatechange = function() {
+        if(this.status == 200 && this.readyState == 4) {
+          let data = JSON.parse(this.responseText);
+          Swal.fire({
+            title: data.title,
+            text: data.message,
+            icon: data.status
+          });
+        }
+      };
+
+      xhttp.open("POST", "crud/data_booking.php", true);
+      xhttp.send(formData);
+    }
+    function checkBooking(id) {
+      let elem = document.querySelectorAll(".item-booking");
+      elem.forEach(element => {
+        element.style.transform = "translateY(0px)";
+        element.style.borderColor = "white";
+      });
+      if(id == idJasa) {
+        elem[id - 1].style.transform = "translateY(0px)";
+        elem[id - 1].style.borderColor = "white";
+        idJasa = null;
+      } else {
+        elem[id - 1].style.transform = "translateY(-10px)";
+        elem[id - 1].style.borderColor = "var(--accent-color)";
+        idJasa = id;
+      }
+    }
+    function addBooking() {
+      if(document.getElementById("data-user").getAttribute("data-id_user") == null) {
+        Swal.fire({
+          title: "Kesalahan",
+          text: "Silahkan lakukan login terlebih dahulu",
+          icon: "error"
+        });
+        return;
+      }
+      if(idJasa == null) {
+        Swal.fire({
+          title: "Kesalahan",
+          text: "Silahkan pilih paket terlebih dahulu",
+          icon: "error"
+        });
+        return;
+      } else if(dateTime == null) {
+        Swal.fire({
+          title: "Kesalahan",
+          text: "Silahkan pilih tanggal dan jam terlebih dahulu",
+          icon: "error"
+        });
+      }
+      let theDate = dateTime.getFullYear() + "-" + (dateTime.getMonth() + 1) + "-" + dateTime.getDate() + " " + dateTime.getHours() + ":" + dateTime.getMinutes() + ":" + dateTime.getSeconds();
+      let xhttp = new XMLHttpRequest();
+      let formData = new FormData();
+
+      // id_booking 	id_user 	id_jasa 	tgl_booking 	status 	created_at 	updated_at 	
+
+      formData.append("id_user", document.getElementById("data-user").getAttribute("data-id_user"));
+      formData.append("id_jasa", idJasa);
+      formData.append("tgl_booking", theDate);
+
+      xhttp.onreadystatechange = function() {
+        if(this.status == 200 && this.readyState == 4) {
+          console.log(this.responseText);
+          let data = JSON.parse(this.responseText);
+          Swal.fire({
+            title: data.title,
+            text: data.message,
+            icon: data.status
+          });
+          ambilData();
+        }
+      };
+
+      xhttp.open("POST", "crud/simpan_data_booking.php", true);
+      xhttp.send(formData);
+    }
+    function ambilData() {
+      if(document.getElementById("data-user").getAttribute("data-id_user") == null) {
+        return;
+      }
+      let xhttp = new XMLHttpRequest();
+
+      xhttp.onreadystatechange = function() {
+        if(this.status == 200 && this.readyState == 4) {
+          console.log(this.responseText);
+          let data = JSON.parse(this.responseText);
+          let tbody = document.getElementById("tbody");
+          let i = 1;
+          tbody.innerHTML = "";
+          if(data.status == "warning") {
+            tbody.innerHTML = `<tr>
+                <td colspan="6" class="text-center bg-light">${data.message}</td>
+              </tr>`;
+            return;
+          }
+          data.forEach(item => {
+            let pending = "success";
+            'pending','confirmed','canceled','complete'
+            if(item.status == "pending") {
+              pending = "warning";
+            } else if(item.status == "confirmed") {
+              pending = "info";
+            } else if(item.status == "canceled") {
+              pending = "dark";
+            } else if(item.status == "complete") {
+              pending = "success";
+            }
+            tbody.innerHTML += `
+              <tr>
+                <td>${i}</td>
+                <td>${item.nama_jasa}</td>
+                <td>${item.harga_jasa}</td>
+                <td>${item.tgl_booking}</td>
+                <td class="bg-${pending}">${item.status}</td>
+                <td>
+                  <button class="btn btn-dark p-2" onclick="ambilDataImage(${item.id_booking})" data-bs-toggle="modal" data-bs-target="#modalDetail">Detail</button>
+                  <button class="btn btn-primary p-2">Upload Bukti</button>
+                  <button class="btn btn-danger p-2">Batalkan</button>
+                </td>
+              </tr>
+            `;
+          });
+        }
+      };
+
+      xhttp.open("POST", "crud/data_booking_all.php", true);
+      xhttp.send();
+    }
+
+    function ambilDataImage(id) {
+      let xhttp = new XMLHttpRequest();
+      let formData = new FormData();
+
+      formData.append("id", id);
+
+      xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
+        }
+      };
+
+      xhttp.open("POST", "crud/data_gambar_bukti_pembayaran.php", true);
+      xhttp.send();
+    }
+    ambilData();
+  </script>
 </body>
 </html>
