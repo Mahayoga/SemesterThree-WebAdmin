@@ -292,6 +292,7 @@
   <script src="assets/user/js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+  <!-- Detail -->
   <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -300,10 +301,50 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <img id="gambar-detail" style="max-width: 100px;" src="" alt="" srcset="">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit -->
+  <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Bookings</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-4">
+            <input type="file" name="gambar" id="gambar">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button onclick="simpanBookingEdit()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Batal -->
+  <div class="modal fade" id="modalBatal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Batalkan Bookings</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Apakah anda ingin membatalkan booking ini?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Tutup</button>
+          <button onclick="batalkanBooking()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Batalkan</button>
         </div>
       </div>
     </div>
@@ -313,6 +354,8 @@
   <script>
     let dateTime = null;
     let idJasa = null;
+    let idEdit = null;
+    let idBatal = null;
     flatpickr("#booking-date", {
       enableTime: true,
       dateFormat: "Y-m-d H:i",
@@ -472,8 +515,8 @@
                 <td class="bg-${pending}">${item.status}</td>
                 <td>
                   <button class="btn btn-dark p-2" onclick="ambilDataImage(${item.id_booking})" data-bs-toggle="modal" data-bs-target="#modalDetail">Detail</button>
-                  <button class="btn btn-primary p-2">Upload Bukti</button>
-                  <button class="btn btn-danger p-2">Batalkan</button>
+                  <button class="btn btn-primary p-2" onclick="setIDEdit(${item.id_booking})" data-bs-toggle="modal" data-bs-target="#modalEdit">Upload Bukti</button>
+                  <button class="btn btn-danger p-2" onclick="setIDBatal(${item.id_booking})" data-bs-toggle="modal" data-bs-target="#modalBatal">Batalkan</button>
                 </td>
               </tr>
             `;
@@ -484,7 +527,6 @@
       xhttp.open("POST", "crud/data_booking_all.php", true);
       xhttp.send();
     }
-
     function ambilDataImage(id) {
       let xhttp = new XMLHttpRequest();
       let formData = new FormData();
@@ -493,12 +535,52 @@
 
       xhttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
-          console.log(this.responseText);
+          let data = JSON.parse(this.responseText);
+          document.getElementById("gambar-detail").setAttribute("src", `data:image/png;base64,${data.message}`);
         }
       };
 
       xhttp.open("POST", "crud/data_gambar_bukti_pembayaran.php", true);
-      xhttp.send();
+      xhttp.send(formData);
+    }
+    function setIDEdit(id) {
+      idEdit = id;
+    }
+    function simpanBookingEdit() {
+      let xhttp = new XMLHttpRequest();
+      let formData = new FormData();
+
+      formData.append("id", idEdit);
+      formData.append("gambar", document.getElementById("gambar").files[0]);
+
+      xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
+          ambilData();
+        }
+      };
+
+      xhttp.open("POST", "crud/simpan_edit_booking.php", true);
+      xhttp.send(formData);
+    }
+    function setIDBatal(id) {
+      idBatal = id;
+    }
+    function batalkanBooking() {
+      let xhttp = new XMLHttpRequest();
+      let formData = new FormData();
+
+      formData.append("id", idBatal);
+
+      xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
+          ambilData();
+        }
+      };
+
+      xhttp.open("POST", "crud/batalkan_booking.php", true);
+      xhttp.send(formData);
     }
     ambilData();
   </script>

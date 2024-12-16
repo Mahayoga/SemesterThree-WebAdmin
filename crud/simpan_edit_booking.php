@@ -1,14 +1,14 @@
 <?php
 include "../config/connection.php";
 // id_booking 	id_user 	id_jasa 	tgl_booking 	status 	created_at 	updated_at 	
-$id_user = $_POST['id_user'];
-$id_jasa = $_POST['id_jasa'];
-$date = $_POST['tgl_booking'];
+$id_booking = $_POST['id'];
+$gambar = $_FILES['gambar'];
 
 try {
-    $sql = "INSERT INTO booking (`id_booking`, `id_user`, `id_jasa`, `tgl_booking`, `bukti_pembayaran`, `status`, `created_at`, `updated_at`) VALUES (0, ?, ?, ?, null, 'pending', null, null)";
+    $sql = "UPDATE booking  SET `bukti_pembayaran` = ? WHERE id_booking = ?";
     $stmt = $koneksi->prepare($sql);
-    $stmt->bind_param('iis', $id_user, $id_jasa, $date);
+    $bin = file_get_contents($gambar['tmp_name']);
+    $stmt->bind_param('ss', $bin, $id_booking);
     $stmt->execute();
     echo json_encode(["status" => "success", "title" => "Booking ditambahkan", "message" => "Silahkan periksa status booking anda dibawah"]);
 } catch(Exception $e) {

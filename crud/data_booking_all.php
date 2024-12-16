@@ -7,7 +7,7 @@ if(!isset($_SESSION['id_user'])) {
 }
 $id_user = $_SESSION['id_user'];
 
-$sql = "SELECT * FROM booking b INNER JOIN users u ON b.id_user = u.id_user INNER JOIN jasa j ON b.id_jasa = j.id_jasa WHERE b.id_user = $id_user LIMIT 4";
+$sql = "SELECT j.nama_jasa, j.harga_jasa, b.tgl_booking, b.status, b.id_booking FROM booking b INNER JOIN users u ON b.id_user = u.id_user INNER JOIN jasa j ON b.id_jasa = j.id_jasa WHERE b.id_user = $id_user LIMIT 4";
 $result = $koneksi->query($sql);
 
 $data = [];
