@@ -277,21 +277,25 @@
     formData.append("id", idHapus);
 
     xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        let data = JSON.parse(this.responseText);
-        if (data.status == "success") {
-          alert("Data berhasil dihapus!");
-          ambilData();
-          tutupModal();
-        } else if (data.status == "error") {
-          alert("Terjadi error pada server!, coba lagi nanti");
+        if (this.readyState == 4 && this.status == 200) {
+            try {
+                let data = JSON.parse(this.responseText);
+                if (data.status === "success") {
+                    alert("Data berhasil dihapus!");
+                    ambilData(); 
+                    tutupModal();
+                } else {
+                    alert("Terjadi error: " + data.message);
+                }
+            } catch (e) {
+                alert("Error parsing response: " + e.message);
+            }
         }
-      }
     };
 
-    xhttp.open("POST", "crud/hapus_data_karyawan.php", true);
-    xhttp.send(formData);
-  }
+    xhttp.open("POST", "crud/hapus_data_karyawan.php", true); 
+    xhttp.send(formData); 
+}
   function tutupModal() {
     let listModal = document.querySelectorAll('.modal [data-bs-dismiss="modal"]');
     listModal.forEach(element => {
