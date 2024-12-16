@@ -15,7 +15,7 @@
               </div>
               <div class="col-md-3">
                 <label for="cashier" class="form-label">Kasir</label>
-                <input type="text" class="form-control" id="cashier" value="Admin" readonly>
+                <input type="text" class="form-control" id="cashier" value="<?=$_SESSION['name']?>" readonly>
               </div>
               <div class="col-md-3">
                 <label for="customer-status" class="form-label">Customer Status</label>
@@ -223,7 +223,7 @@
         <div class="card-body d-flex flex-column justify-content-between" style="height: 100%;">
           <div class="d-flex flex-column">
             <button class="btn btn-danger mb-3" id="cancel">Cancel</button>
-            <button class="btn btn-success" id="process-payment">Process Payment</button>
+            <button class="btn btn-success" id="process-payment" onclick="simpanData()">Process Payment</button>
           </div>
         </div>
       </div>
@@ -379,41 +379,89 @@
     const change = document.getElementById('change').value;
     const note = document.getElementById('note').value;
 
-    // Generate the receipt content
-    let receiptContent = `
-    <h3 style="text-align: center;">Receipt</h3>
-    <p><strong>Date:</strong> ${date}</p>
-    <p><strong>Cashier:</strong> ${cashier}</p>
-    <p><strong>Customer:</strong> ${customerName}</p>
-    <p><strong>Status:</strong> ${customerStatus}</p>
-    <hr>
-    <h4>Items:</h4>`;
+    let xhttp = new XMLHttpRequest();
+    let formData = new FormData();
 
-    items.forEach(item => {
-        receiptContent += `
-        <p><strong>Service:</strong> ${item.service}</p>
-        <p><strong>Price:</strong> ${item.price}</p>
-        <p><strong>Qty:</strong> ${item.qty}</p>
-        <p><strong>Total:</strong> ${item.total}</p>
-        <hr>`;
-    });
+    formData.append("total", grandTotal);
+    formData.append("bayar", cash);
+    formData.append("kembalian", change);
+    formData.append("method_pembayaran", paymentMethod);
 
-    receiptContent += `
-    <p><strong>Sub Total:</strong> ${subTotal}</p>
-    <p><strong>Discount:</strong> ${discount}</p>
-    <p><strong>Grand Total:</strong> ${grandTotal}</p>
-    <p><strong>Payment Method:</strong> ${paymentMethod}</p>
-    ${paymentMethod === 'cash' ? `<p><strong>Cash:</strong> ${cash}</p>` : ''}
-    ${paymentMethod === 'qris' ? `<p><strong>QRIS:</strong> ${qris}</p>` : ''}
-    <p><strong>Change:</strong> ${change}</p>
-    <p><strong>Note:</strong> ${note}</p>
-    `;
+    if(document.getElementById("customer-status").selectedOptions[0].value == "registered") {
+      if(document.getElementById("customer").selectedOptions[0].value == "Umum") {
+        return;
+      }
+      formData.append("id_user", document.getElementById("customer").selectedOptions[0].value);
+    } else if(document.getElementById("customer-status").selectedOptions[0].value == "not_registered") {
+      let xhttp2 = new XMLHttpRequest();
+      let formData2 = new FormData();
+      formData2.append("nama", document.getElementById("new-customer").value);
+      xhttp2.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+          let data = JSON.parse(this.responseText);
+          console.log(data);
+          formData.append("id_user", data.data);
+        }
+      };
+      xhttp2.open("POST", "crud/customer_not_regist.php", false);
+      xhttp2.send(formData2);
+    } else if(document.getElementById("customer-status").selectedOptions[0].value == "recorded") {
+      formData.append("id_user", document.getElementById("recorded-customer-list").selectedOptions[0].value);
+    }
+    formData.append("id_karyawan", <?= $_SESSION['id_user']?>);
 
-    // Open a new window for the receipt and print it
-    const receiptWindow = window.open('', '', 'width=600,height=600');
-    receiptWindow.document.write(receiptContent);
-    receiptWindow.document.close();
-    receiptWindow.print(); 
+    xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(this.responseText);
+        Swal.fire({
+          title: data.title,
+          text: data.message,
+          icon: data.status
+        });
+      }
+    };
+
+    xhttp.open("POST", "crud/simpan_data_kasir.php", true);
+    xhttp.send(formData);
+
+    // // Generate the receipt content
+    // let receiptContent = `
+    // <h3 style="text-align: center;">Receipt</h3>
+    // <p><strong>Date:</strong> ${date}</p>
+    // <p><strong>Cashier:</strong> ${cashier}</p>
+    // <p><strong>Customer:</strong> ${customerName}</p>
+    // <p><strong>Status:</strong> ${customerStatus}</p>
+    // <hr>
+    // <h4>Items:</h4>`;
+
+    // items.forEach(item => {
+    //     receiptContent += `
+    //     <p><strong>Service:</strong> ${item.service}</p>
+    //     <p><strong>Price:</strong> ${item.price}</p>
+    //     <p><strong>Qty:</strong> ${item.qty}</p>
+    //     <p><strong>Total:</strong> ${item.total}</p>
+    //     <hr>`;
+    // });
+
+    // receiptContent += `
+    // <p><strong>Sub Total:</strong> ${subTotal}</p>
+    // <p><strong>Discount:</strong> ${discount}</p>
+    // <p><strong>Grand Total:</strong> ${grandTotal}</p>
+    // <p><strong>Payment Method:</strong> ${paymentMethod}</p>
+    // ${paymentMethod === 'cash' ? `<p><strong>Cash:</strong> ${cash}</p>` : ''}
+    // ${paymentMethod === 'qris' ? `<p><strong>QRIS:</strong> ${qris}</p>` : ''}
+    // <p><strong>Change:</strong> ${change}</p>
+    // <p><strong>Note:</strong> ${note}</p>
+    // `;
+
+    // // Open a new window for the receipt and print it
+    // const receiptWindow = window.open('', '', 'width=600,height=600');
+    // receiptWindow.document.write(receiptContent);
+    // receiptWindow.document.close();
+    // receiptWindow.print(); 
 });
+
+function simpanData() {
+
+}
 </script>
-<?php

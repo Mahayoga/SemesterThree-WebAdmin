@@ -11,6 +11,9 @@ if($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
     if(password_verify($pass, $row['password'])) {
       $_SESSION['isLogin'] = true;
+      $_SESSION['role'] = $row['role'];
+      $_SESSION['name'] = $row['nama_user'];
+      $_SESSION['id_user'] = $row['id_user'];
       echo json_encode(["status" => "success", "title" => "Berhasil", "message" => "Login berhasil. Anda akan diarahkan pada halaman dashboard"]);
       exit();
     }
